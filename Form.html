@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>พฤติกรรมการใช้สมาร์ทโฟน</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="bg-light">
+    <!-- <script src="https://kit.fontawesome.com/ec5bc4e52f.js" crossorigin="anonymous"></script> -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <!-- <script src="FormControl.js"></script> -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="z-index: 2;">
+        <a class="navbar-brand" href="index.html">พฤติกรรมการใช้สมาร์ทโฟน</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="AdminView.html">Admin<span class="sr-only">(current)</span></a>
+                <!-- <a class="nav-item nav-link" href="#">Features</a>
+                <a class="nav-item nav-link" href="#">Pricing</a>
+                <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> -->
+            </div>
+        </div>
+    </nav>
+    <!-- <include src="./header.html"></include> -->
+    <div id="Loading" class="sticky w-100 h-100 d-flex flex-column align-items-center justify-content-center"
+        style="background-color: rgb(255, 255, 255); z-index: 2;">
+        <div class="loader"></div>Loading...
+    </div>
+    <div class="container pb-5 mt-2">
+        <h3>แบบสอบถามพฤติกรรมการใช้ Smartphone เพื่อทำนายผลการเรียน</h3>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <strong> กรอกข้อมูลตามแบบสอบถามเพื่อทำนายผล</strong>
+            </div>
+        </div>
+        <div class="panel-body p-5" style="background-color:rgba(255,255,255,0.7);color:black;">
+            <form method="get" id="form" action="" onsubmit="return serializeBeforeSend()">
+                <div class="d-flex w-100 flex-column justify-content-center align-items-center">
+                    <!-- Tab 1 -->
+                    <div class="tab w-100">
+                        <div class="d-flex w-100 flex-column justify-content-start align-items-center">
+                            <div class="headerPartQuestion w-100">
+                                <hr><b>ข้อมูลทั่วไป</b>
+                                <hr>
+                            </div>
+                            <div class="form-group w-100">
+                                <label for="">1.รหัสนักศึกษา <span class="text-danger">*</span></label>
+                                <input type="text" name="stuId" id="" class="form-control w-40"
+                                    placeholder="รหัสนักศึกษา" required>
+                            </div>
+                            <div class="form-group w-100">
+                                <label for="">2.ชื่อ-นามสกุล <span class="text-danger">*</span></label>
+                                <div class="d-flex flex-row justify-content-start align-items-center">
+                                    <div class="flex w-40">
+                                        <input type="text" name="stuName" class="form-control" placeholder="ชื่อ"
+                                            autocomplete="name" required>
+                                    </div>
+                                    <div class="flex w-40 ml-3">
+                                        <input type="text" name="stuLastname" class="form-control" placeholder="นามสกุล"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group w-100">
+                                <div>3.เพศ <span class="text-danger">*</span></div>
+                                <div>&emsp;<input type="radio" class="option-input radio" name="ans1" value="male"
+                                        required>&nbsp;ชาย</div>
+                                <div> &emsp;<input type="radio" class="option-input radio" name="ans1"
+                                        value="female">&nbsp;หญิง </div>
+                            </div>
+                            <div class="form-group w-100">
+                                <label for="">4.ชั้นปี <span class="text-danger">*</span></label>
+                                <select class="form-control" name="ans2" id="" required>
+                                    <option value="" selected>เลือกชั้นปี</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <div class="form-group w-100">
+                                <label for="">5.สาขาวิชาหลักสูตร <span class="text-danger">*</span></label>
+                                <select class="form-control" name="ans3" id="" required>
+                                    <option value="" selected>เลือกสาขาวิชา</option>
+                                    <option value="IT_KMUTNB">เทคโนโลยีสารสนเทศ (KMUTNB)</option>
+                                    <option value="ITI">เทคโนโลยีสารสนเทศเพื่ออุตสาหกรรม (KMUTNB)</option>
+                                    <option value="Business Computer">เทคโนโลยีสารสนเทศทางการศึกษา (RMUTT)</option>
+                                    <option value="Computer Education">เทคโนโลยีสารสนเทศ (RMUTT)</option>
+                                    <option value="Computer Engineering">คอมพิวเตอร์ศึกษา (RMUTT)</option>
+                                    <option value="IT_RMUTT">คอมพิวเตอร์ธุรกิจ (RMUTT)</option>
+                                    <option value="Educational Information Technology">วิศวกรรมคอมพิวเตอร์ (RMUTT)
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group w-100">
+                                <label for="">6.GPA ก่อนเข้าศึกษาในมหาวิทยาลัย <span
+                                        class="text-danger">*</span></label>
+                                <input type="number" min="0" max="4" step="0.01" name="ans4" id=""
+                                    class="form-control w-50" placeholder="กรอก GPA ก่อนเข้าศึกษาในมหาวิทยาลัย">
+                            </div>
+                            <div class="form-group w-100">
+                                <div> 7.ค่าบริการโทรศัพท์มือถือต่อเดือน <span class="text-danger">*</span></div>
+                                <div>&emsp;<input type="radio" class="option-input radio" name="ans5" value="300 to 600"
+                                        required>&nbsp;น้อยกว่า
+                                    300 บาท</div>
+                                <div>&emsp;<input type="radio" class="option-input radio" name="ans5"
+                                        value="less than 300">&nbsp;ตั้งแต่ 300
+                                    บาทแต่ไม่เกิน 600 บาท</div>
+                                <div>&emsp;<input type="radio" class="option-input radio" name="ans5"
+                                        value="600 to 900">&nbsp;ตั้งแต่ 600
+                                    บาทแต่ไม่เกิน 900 บาท</div>
+                                <div>&emsp;<input type="radio" class="option-input radio" name="ans5"
+                                        value="more than 900">&nbsp;มากกว่า
+                                    900 บาท</div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tab 2 -->
+                    <div class="tab w-100">
+                        <div class="d-flex w-100 flex-column justify-content-start align-items-center">
+                            <div class="headerPartQuestion w-100">
+                                <hr><b>ท่านมีพฤติกรรมการใช้ Smartphone ในด้านเวลาและสถานที่เป็นอย่างไร</b>
+                                <hr>
+                            </div>
+                            <div class="form-group w-100">
+                                <div>8.การเริ่มใช้งาน Smartphone <span class="text-danger">*</span></div>
+                                <div>&emsp;<input type="radio" class="option-input radio" name="ans6"
+                                        value="less than 3 year" required>&nbsp;น้อยกว่า 3
+                                    ปี</div>
+                                <div> &emsp;<input type="radio" class="option-input radio" name="ans6"
+                                        value="3 to 5 year">&nbsp;ตั้งแต่ 3 ปี
+                                    แต่ไม่เกิน 5 ปี</div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans6"
+                                        value="5 to 8 year">&nbsp;ตั้งแต่ 5 ปี
+                                    แต่ไม่เกิน 8 ปี
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans6"
+                                        value="more than 8 year">&nbsp;มากกว่า
+                                    8 ปี
+                                </div>
+                            </div>
+                            <div class="form-group w-100">
+                                <div>9.จำนวนชั่วโมงของการใช้ smartphone ต่อวัน <span class="text-danger">*</span></div>
+                                <div>&emsp;<input type="radio" class="option-input radio" name="ans7"
+                                        value="less than 3 hour" required>&nbsp;น้อยกว่า 3
+                                    ชั่วโมง
+                                </div>
+                                <div>&emsp;<input type="radio" class="option-input radio" name="ans7"
+                                        value="3 to 5 hour">&nbsp;ตั้งแต่
+                                    3 ชั่วโมง แต่ไม่เกิน 5 ชั่วโมง
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans7"
+                                        value="5 to 7 hour">&nbsp;ตั้งแต่
+                                    5 ชั่วโมง แต่ไม่เกิน 7 ชั่วโมง
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans7"
+                                        value="up to 7 hour">&nbsp;ตั้งแต่ 7 ชั่วโมงขึ่นไป
+                                </div>
+                            </div>
+                            <div class="form-group w-100">
+                                <div>10.ช่วงเวลาที่ใช้ smartphone บ่อยที่สุด <span class="text-danger">*</span></div>
+                                <div>&emsp;<input type="radio" class="option-input radio" name="ans8"
+                                        value="06.01 AM - 00.00 PM" required>&nbsp;06.01 -
+                                    12.00 น.
+                                </div>
+                                <div>&emsp;<input type="radio" class="option-input radio" name="ans8"
+                                        value="00.01 PM - 06.00 PM">&nbsp;12.01 -
+                                    18.00 น.
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans8"
+                                        value="06.01 PM - 00.00 AM">&nbsp;18.01 -
+                                    24.00 น.
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans8"
+                                        value="00.01 AM - 06.00 AM">&nbsp;24.01 -
+                                    06.00 น.
+                                </div>
+                            </div>
+                            <div class="form-group w-100">
+                                <div>11.สถานที่ ที่ใช้ smartphone มากที่สุด <span class="text-danger">*</span></div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans9" value="dorm"
+                                        required>&nbsp;หอพัก
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans9"
+                                        value="computer lab" required>&nbsp;ห้องปฏิบัติการคอมพิวเตอร์
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans9" value="home"
+                                        required>&nbsp;บ้าน
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans9"
+                                        value="Around the university " required>&nbsp;บริเวณรอบๆอาคารเรียน
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans9"
+                                        value="restaurants">&nbsp;ร้านอาหาร/ร้านเครื่องดื่ม
+
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans9"
+                                        value="everywhere">&nbsp;อื่น ๆ
+                                    <input style="border: 1px solid #ced4da;border-radius: .25rem;" name="nonesend"
+                                        type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tab 3  -->
+                    <div class="tab w-100">
+                        <div class="d-flex w-100 flex-column justify-content-start align-items-center">
+                            <div class="headerPartQuestion w-100">
+                                <hr><b>ท่านมีพฤติกรรมการใช้ smartphone ในการเรียนอย่างไร</b>
+                                <hr>
+                            </div>
+                            <div class="form-group w-100">
+                                <div>12.ใช้ smartphone เพื่อค้นคว้าข้อมูล และทำกิจกรรมที่อาจารย์มอบหมายในห้องเรียน <span
+                                        class="text-danger">*</span> </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans10" value="always"
+                                        required>&nbsp;ทุกครั้ง
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans10"
+                                        value="sometimes">&nbsp;บางครั้ง
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans10"
+                                        value="never">&nbsp;ไม่เคย
+                                </div>
+                            </div>
+                            <div class="form-group w-100">
+                                <div>
+                                    13.ใช้ smartphone เพื่อค้นคว้าเนื้อหาที่ไม่เข้าใจเพิ่มเติมนอกห้องเรียน <span
+                                        class="text-danger">*</span>
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans11" value="always"
+                                        required>&nbsp;ทุกครั้ง
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans11"
+                                        value="sometimes">&nbsp;บางครั้ง
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans11"
+                                        value="never">&nbsp;ไม่เคย
+                                </div>
+                            </div>
+                            <div class="form-group w-100">
+                                <div>
+                                    14.ใช้ smartphone เพื่อถ่ายรูป powerpoint ของอาจารย์แทนการจดบันทึก <span
+                                        class="text-danger">*</span>
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans12" value="always"
+                                        required>&nbsp;ทุกครั้ง
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans12"
+                                        value="sometimes">&nbsp;บางครั้ง
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans12"
+                                        value="never">&nbsp;ไม่เคย
+                                </div>
+                            </div>
+                            <div class="form-group w-100">
+                                <div>
+                                    15.ใช้ smartphone เพื่อติดต่อ/สอบถาม เกี่ยวกับเรื่องการเรียน กับเพื่อน <span
+                                        class="text-danger">*</span>
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans13" value="always"
+                                        required>&nbsp;ทุกครั้ง
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans13"
+                                        value="sometimes">&nbsp;บางครั้ง
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans13"
+                                        value="never">&nbsp;ไม่เคย
+                                </div>
+                            </div>
+                            <div class="form-group w-100">
+                                <div>
+                                    16.ระยะเวลาการแอบใช้ smartphone ในห้องเรียน <span class="text-danger">*</span>
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans14"
+                                        value="more than half of class time"
+                                        required>&nbsp;มากกว่าครึ่งหนึ่งของเวลาเรียน
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans14"
+                                        value="half of class time">&nbsp;ครึ่งหนึ่งของเวลาเรียน
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans14"
+                                        value="less than half of class time">&nbsp;น้อยกว่าครึ่งหนึ่งของเวลาเรียน
+                                </div>
+                            </div>
+                            <div class="form-group w-100">
+                                <div>
+                                    17.วัตถุประสงค์หลักที่แอบใช้ smartphone ในห้องเรียน <span
+                                        class="text-danger">*</span>
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans15" value="call"
+                                        required>&nbsp;โทรเข้า-ออก
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans15"
+                                        value="email">&nbsp;รับส่ง
+                                    email
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans15"
+                                        value="social media">&nbsp;ใช้สื่อสังคมออนไลน์
+                                    (facebook, line, อื่นๆ)
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans15"
+                                        value="internet">&nbsp;เล่นอินเทอร์เน็ต
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans15"
+                                        value="entertain">&nbsp;ฟังเพลง
+                                    ภาพยนตร์ หรือโทรทัศน์
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans15"
+                                        value="play game">&nbsp;เล่นเกม
+                                </div>
+                            </div>
+                            <div class="form-group w-100">
+                                <div>
+                                    18.ช่วงเวลาที่แอบใช้ smartphone ในห้องเรียน <span class="text-danger">*</span>
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans16"
+                                        value="presentation"
+                                        required>&nbsp;ช่วงเวลาที่อาจารย์ให้เพื่อนนำเสนอหน้าห้องเรียน
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans16"
+                                        value="group work">&nbsp;ช่วงเวลาที่อาจารย์ให้นักศึกษาทำงานกลุ่ม
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans16"
+                                        value="lecture">&nbsp;ช่วงเวลาที่อาจารย์สอนแบบบรรยาย
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans16"
+                                        value="Practice Course">&nbsp;ช่วงเวลาที่อาจารย์สอนปฏิบัติ
+                                </div>
+                            </div>
+                            <div class="form-group w-100">
+                                <div>
+                                    19.ใช้ smartphone สำหรับนำเสนอผลงาน/งานที่ได้รับมอบหมายหน้าชั้นเรียน <span
+                                        class="text-danger">*</span>
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans17" value="always"
+                                        required>&nbsp;ทุกครั้ง
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans17"
+                                        value="sometimes">&nbsp;บางครั้ง
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans17"
+                                        value="never">&nbsp;ไม่เคย
+                                    (ไม่เคย)
+                                </div>
+                            </div>
+                            <div class="form-group w-100">
+                                <div>
+                                    20.ใช้ smartphone เพื่อติดต่อ/สอบถามอาจารย์ผู้สอนเกี่ยวกับเรื่องการเรียน <span
+                                        class="text-danger">*</span>
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans18" value="always"
+                                        required>&nbsp;ทุกครั้ง
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans18"
+                                        value="sometimes">&nbsp;บางครั้ง
+                                </div>
+                                <div>
+                                    &emsp;<input type="radio" class="option-input radio" name="ans18"
+                                        value="never">&nbsp;ไม่เคย
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex w-100 justify-content-end">
+                        <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                        <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                    </div>
+                    <div style="text-align:center;margin-top:40px;">
+                        <span class="step"></span>
+                        <span class="step"></span>
+                        <span class="step"></span>
+                    </div>
+                </div>
+
+                <!-- <button type="button" class="btn btn-default" id="test" style="font-size:18px;"><i
+                                    class=""></i>ย้อนกลับ</button>
+                            <button type="submit" class="btn btn-success" style="font-size:18px;"><i
+                                    class="fa fa-save"></i> ทำนายผล !</button> -->
+
+
+            </form>
+        </div>
+</body>
+
+</html>
+<script src="FormControl.js"></script>

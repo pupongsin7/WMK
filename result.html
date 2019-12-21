@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>การทำนายผล</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body class="bg-light">
+    <script src="https://kit.fontawesome.com/ec5bc4e52f.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <!-- <script src="FormJSON.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <!-- <include src="./header.html"></include> -->
+    <nav class="navbar navbar-light sticky" style="z-index: 2;">
+        <a class="navbar-brand" href="index.html">พฤติกรรมการใช้สมาร์ทโฟน</a>
+            <img src="" width="30" height="30" class="d-inline-block align-top" alt="">
+            พฤติกรรมการใช้สมาร์ทโฟน
+        </a>
+    </nav>
+    <!-- Start Loading...  -->
+    <div id="Loading" class="sticky w-100 h-100 d-flex flex-column align-items-center justify-content-center"
+        style="background-color: rgb(255, 255, 255);">
+        <div class="loader">Loading...</div>กำลังประมวลผล...โปรดรอสักครู่
+    </div>
+    <!-- End Loading....  -->
+    <div class="container pt-5 pb-5">
+        <h3>การทำนายผล</h3>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <strong></strong>
+            </div>
+        </div>
+        <div class="panel-body d-flex flex-column justify-content-center align-items-center w-100"
+            style="background-color:rgba(255,255,255,0.7);color:black;font-size:1rem;">
+            <div class="d-flex" id="icons" style="font-size: 8em;">
+
+            </div>
+            <div class="d-flex w-100 flex-column justify-content-center align-items-center">
+                <div class="d-flex justify-content-center align-items-center" id="result">
+
+                </div>
+                <div class="d-flex justify-content-center align-items-center" id="prob">
+
+                </div>
+
+            </div>
+          
+        </div>
+        <div class="panel-body d-flex flex-column justify-content-center align-items-center w-100 mt-2"
+        style="background-color:rgba(255,255,255,0.7);color:black;font-size:1rem;">
+            <div class="d-flex w-100">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="panel-body d-flex flex-column justify-content-center align-items-center w-100 mt-2"
+        style="background-color:rgba(255,255,255,0.7);color:black;font-size:1rem;">
+        <div class="d-flex justify-content-center align-items-center" id="HistoryCount">
+
+        </div>
+        </div>
+    </div>
+        <script>
+
+
+            $.when($.ready).then(function () {
+                const urlParams = new URLSearchParams(window.location.search);
+                var pathAPI = "http://localhost:3333/"
+                // console.log(urlParams.has('ans1')); // true
+                // console.log(urlParams.get('ans1')); // "shirt"
+                let ResultGPA = urlParams.get('res')
+                let prob = urlParams.get('prob')
+                let resBad = urlParams.get('resBad')
+                let resGood = urlParams.get('resGood')
+                let HistoryCount = urlParams.get('History')
+                let studentName = urlParams.get('stuName') + " " + urlParams.get('stuLastname')
+                let str = ""
+                if (ResultGPA == "1") {
+                    document.getElementById("icons").innerHTML = `<i class="fas fa-smile-beam text-success"></i>`
+                    str = `ผลการเรียนออกไปในแนวทางที่ดี`
+                }
+                else if (ResultGPA == "2") {
+                    document.getElementById("icons").innerHTML = `<i class="fas fa-sad-cry text-danger"></i>`
+                    str = `มีแนวโน้วที่จะมีผลการเรียนที่ไม่ดีควรปรับปรุงพฤติกรรมการใช้สมาร์ทโฟน`
+                }
+                document.getElementById("result").innerHTML = str
+                document.getElementById("prob").innerHTML = `ความน่าจะเป็นเท่ากับ ` + prob
+                document.getElementById("HistoryCount").innerHTML = `จำนวนเข้าใช้งาน ` + HistoryCount + ` ครั้ง`
+
+                PieChart(resGood, resBad)
+
+
+            }).done(function () {
+                // alert("second success");
+                $("#Loading").fadeOut(1000, function () { document.getElementById("Loading").style.cssText += "display:none !important;"; })
+            }).fail(function () {
+                // alert("error");
+
+                $("#Loading").fadeOut(1000, function () { document.getElementById("Loading").style.cssText += "display:none !important;"; })
+
+            })
+
+
+            function PieChart(resultGood, resultBad) {
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['ผลการเรียนออกไปในแนวทางที่ดี', 'มีแนวโน้วที่จะมีผลการเรียนที่ไม่ดีควรปรับปรุงพฤติกรรมการใช้สมาร์ทโฟน'],
+                        datasets: [{
+                            label: '# of Votes',
+                            data: [resultGood, resultBad],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true
+                    }
+                });
+            }
+        </script>
+    </div>
+</body>
+
+</html>

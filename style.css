@@ -1,0 +1,388 @@
+
+@media (max-width: 500px) { 
+  body{
+    font-family: 'Segoe UI', sans-serif;
+    font-size : 0.75rem;
+
+  }
+  /* canvas{
+    width:300px;
+    height:300px;
+  } */
+  /* start ส่วน css ของ radio button  */
+
+  .boxCheckbox{
+    height:35px;
+  }
+  @keyframes click-wave {
+    0% {
+      height: 20px;
+      width: 20px;
+      opacity: 0.35;
+      position: relative;
+      
+
+    }
+    100% {
+      height: 200px;
+      width: 200px;
+      margin-left: -80px;
+      margin-top: -80px;
+      opacity: 0;
+      
+
+    }
+    
+  }
+
+  .option-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    position: relative;
+    top: 5px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    transition: all 0.15s ease-out 0s;
+    background: #cbd1d8;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 0.5rem;
+    outline: none;
+    position: relative;
+    z-index: 0;
+    
+
+  }
+  .option-input:hover {
+    background: #9faab7;
+    
+
+  }
+  .option-input:checked {
+    background: #89f5ea;
+    
+
+  }
+  .option-input:checked::before {
+    
+
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    content: '✔';
+    display: inline-block;
+    font-size: 12px;
+    /* font-size: 26.66667px; */
+    text-align: center;
+    line-height: 20px;
+  }
+  .option-input:checked::after {
+    -webkit-animation: click-wave 0.65s;
+    -moz-animation: click-wave 0.65s;
+    animation: click-wave 0.65s;
+    background: #40e0d0;
+    content: '';
+    
+
+    display: block;
+    /* position: relative; */
+    /* z-index: 100; */
+  }
+  .option-input.radio {
+    border-radius: 50%;
+    
+  }
+  .option-input.radio::after {
+    border-radius: 50%;
+    
+
+  }
+  /* end ส่วน css ของ radio button  */
+}
+@media (min-width: 501px) { 
+  body{
+    font-family: 'Segoe UI', sans-serif;
+    font-size : 1rem;
+
+  }
+  /* canvas{
+    width:500px;
+    height:500px;
+  }  */
+  .boxCheckbox{
+    height:70px;
+  }
+  /* start ส่วน css ของ radio button  */
+
+
+  @keyframes click-wave {
+    0% {
+      height: 40px;
+      width: 40px;
+      opacity: 0.35;
+      position: relative;
+      
+
+    }
+    100% {
+      height: 200px;
+      width: 200px;
+      margin-left: -80px;
+      margin-top: -80px;
+      opacity: 0;
+      
+
+    }
+  }
+
+  .option-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    position: relative;
+    top: 13.33333px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    width: 40px;
+    transition: all 0.15s ease-out 0s;
+    background: #cbd1d8;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 0.5rem;
+    outline: none;
+    position: relative;
+    z-index: 0;
+    
+
+  }
+  .option-input:hover {
+    background: #9faab7;
+    
+
+  }
+  .option-input:checked {
+    background: #89f5ea;
+    
+
+  }
+  .option-input:checked::before {
+    
+
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    content: '✔';
+    display: inline-block;
+    font-size: 20px;
+    /* font-size: 26.66667px; */
+    text-align: center;
+    line-height: 40px;
+  }
+  .option-input:checked::after {
+    -webkit-animation: click-wave 0.65s;
+    -moz-animation: click-wave 0.65s;
+    animation: click-wave 0.65s;
+    background: #40e0d0;
+    content: '';
+    
+
+    display: block;
+    /* position: relative; */
+    /* z-index: 100; */
+  }
+  .option-input.radio {
+    border-radius: 50%;
+    
+  }
+  .option-input.radio::after {
+    border-radius: 50%;
+    
+
+  }
+  /* end ส่วน css ของ radio button  */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+td{
+    padding-bottom : 5px;
+}
+hr{
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.container{
+    background-color:#cacaca;
+    padding-top : 80px !important;
+}
+nav{
+    background-color: #cacaca
+}
+.w-40{
+    width: 40%;
+}
+.w-30{
+  width: 30%;
+}
+.headerPartQuestion{
+    background-color: #cacaca; border-radius: 5px;
+}
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+/* start ส่วน css ของ loading  */
+  .loader,
+.loader:before,
+.loader:after {
+  background: black;
+  -webkit-animation: load1 1s infinite ease-in-out;
+  animation: load1 1s infinite ease-in-out;
+  width: 1em;
+  height: 4em;
+}
+.loader {
+  color: black;
+  text-indent: -9999em;
+  margin: 88px auto;
+  position: relative;
+  font-size: 11px;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+
+}
+.loader:before,
+.loader:after {
+  position: absolute;
+  top: 0;
+  content: '';
+}
+.loader:before {
+  left: -1.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.loader:after {
+  left: 1.5em;
+}
+@-webkit-keyframes load1 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 0;
+    height: 4em;
+  }
+  40% {
+    box-shadow: 0 -2em;
+    height: 5em;
+  }
+}
+@keyframes load1 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 0;
+    height: 4em;
+  }
+  40% {
+    box-shadow: 0 -2em;
+    height: 5em;
+  }
+}
+/* end ส่วน css ของ loading  */
+
+
+
+/* form control */ 
+button {
+  background-color: #4CAF50;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  font-family: Raleway;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+#prevBtn {
+  background-color: #bbbbbb;
+}
+input.invalid {
+  background-color: #ffdddd !important;
+}
+select.invalid {
+  border: 1px solid red;
+}
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;  
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+.step.active {
+  opacity: 1;
+}
+.step.finish {
+  background-color: #4CAF50;
+}
+.tab {
+  display: none;
+}
+
+/* Image Slider */
+
+/*jssor slider loading skin double-tail-spin css*/
+.jssorl-004-double-tail-spin img {
+    animation-name: jssorl-004-double-tail-spin;
+    animation-duration: 1.6s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes jssorl-004-double-tail-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/*jssor slider bullet skin 031 css*/
+.jssorb031 {position:absolute;}
+.jssorb031 .i {position:absolute;cursor:pointer;}
+.jssorb031 .i .b {fill:#000;fill-opacity:0.5;stroke:#fff;stroke-width:1200;stroke-miterlimit:10;stroke-opacity:0.3;}
+.jssorb031 .i:hover .b {fill:#fff;fill-opacity:.7;stroke:#000;stroke-opacity:.5;}
+.jssorb031 .iav .b {fill:#fff;stroke:#000;fill-opacity:1;}
+.jssorb031 .i.idn {opacity:.3;}
+
+/*jssor slider arrow skin 051 css*/
+.jssora051 {display:block;position:absolute;cursor:pointer;}
+.jssora051 .a {fill:none;stroke:#fff;stroke-width:360;stroke-miterlimit:10;}
+.jssora051:hover {opacity:.8;}
+.jssora051.jssora051dn {opacity:.5;}
+.jssora051.jssora051ds {opacity:.3;pointer-events:none;}
