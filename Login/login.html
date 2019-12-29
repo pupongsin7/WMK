@@ -34,14 +34,21 @@
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <!-- <a class="nav-item nav-link active" href="AdminView.html">Admin<span class="sr-only">(current)</span></a> -->
-                <!-- <a class="nav-item nav-link" href="#">Features</a>
-                <a class="nav-item nav-link" href="#">Pricing</a>
-                <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> -->
-            </div>
-        </div>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav mr-auto">
+              <!-- <li class="nav-item active">
+                <a class="nav-item nav-link active" href="#" id="userName">Admin<span
+                    class="sr-only">(current)</span></a>
+              </li> -->
+             <li class="nav-item">
+                <a class="nav-item nav-link active" href="Form.html" >กรอกแบบฟอร์มเพื่อทำนายผล<span class="sr-only">(current)</span></a>
+              </li>
+            </ul>
+            <span class="navbar-text" id="logout" style="display:none">
+                <a class="nav-item nav-link active" href="AdminView.html?logout=true" id="userName">Logout<span
+                    class="sr-only">(current)</span></a>
+            </span>
+          </div>
     </nav>
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/1.jpg');">

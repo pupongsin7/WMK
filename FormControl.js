@@ -1,5 +1,5 @@
 
-console.log(window.sessionStorage)
+
 
 // const url = 'https://192.168.1.8:3333/predict';
 
@@ -72,6 +72,9 @@ console.log(window.sessionStorage)
 //     // document.getElementById("form").addEventListener("submit", serializeBeforeSend());
 // });
 $(document).ready(function () {
+    var Token = sessionStorage.getItem("key");
+    if(Token == null)document.getElementById("login").style.cssText += "display:inline-block !important;"; 
+    else document.getElementById("logout").style.cssText += "display:inline-block !important;"; 
     setTimeout(function () {
         // var x = document.getElementById("Loading");
         $("#Loading").fadeOut(500, function () { document.getElementById("Loading").style.cssText += "display:none !important;"; })

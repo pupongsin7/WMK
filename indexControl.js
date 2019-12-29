@@ -1,6 +1,8 @@
-sessionStorage.setItem("lastname", "Smith");
-console.log(window.sessionStorage)
+
 $(document).ready(function () {
+  var Token = sessionStorage.getItem("key");
+if(Token == null)document.getElementById("login").style.cssText += "display:inline-block !important;"; 
+else document.getElementById("logout").style.cssText += "display:inline-block !important;"; 
     setTimeout(function () {
         // var x = document.getElementById("Loading");
         $("#Loading").fadeOut(500, function () { document.getElementById("Loading").style.cssText += "display:none !important;"; })

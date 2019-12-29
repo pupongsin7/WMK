@@ -30,20 +30,26 @@
 
     <!-- <script src="ControlForm.js"></script> -->
     <nav class="navbar navbar-expand-lg navbar-light sticky" style="z-index: 2;">
-        <a class="navbar-brand" href="#">พฤติกรรมการใช้สมาร์ทโฟน</a>
+        <a class="navbar-brand" href="index.html">พฤติกรรมการใช้สมาร์ทโฟน</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="AdminView.html">Admin<span
-                        class="sr-only">(current)</span></a>
-                <!-- <a class="nav-item nav-link" href="#">Features</a>
-                <a class="nav-item nav-link" href="#">Pricing</a>
-                <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> -->
-            </div>
-        </div>
+            <ul class="navbar-nav mr-auto">
+              <!-- <li class="nav-item active">
+                <a class="nav-item nav-link active" href="#" id="userName">Admin<span
+                    class="sr-only">(current)</span></a>
+              </li> -->
+             <li class="nav-item">
+                <a class="nav-item nav-link active" href="Form.html" >กรอกแบบฟอร์มเพื่อทำนายผล<span class="sr-only">(current)</span></a>
+              </li>
+            </ul>
+            <span class="navbar-text" id="logout" style="display:none">
+                <a class="nav-item nav-link active" href="AdminView.html?logout=true" id="userName">Logout<span
+                    class="sr-only">(current)</span></a>
+            </span>
+          </div>
     </nav>
     <!-- <include src="./header.html"></include> -->
     <div id="Loading" class="sticky w-100 h-100 d-flex flex-column align-items-center justify-content-center"
@@ -93,8 +99,23 @@
             </div>
 
         </div>
-        <div class="d-flex">
-            <canvas id="myChart"></canvas>
+        <div class="d-flex flex-column">
+            <canvas id="myChart">
+                
+            </canvas>
+            <div id="NoResult" class="w-100">
+                <div class="d-flex w-100 justify-content-center align-items-center">
+                    <h1>No result.</h1>
+                </div>
+            </div>
+            <div class="d-flex flex-column justify-content-center align-items-center pt-5">
+                <span class="text-danger" id="info">*คลิ๊กที่กราฟเพื่อดูข้อมูลนักศึกษา</span> 
+            </div>
+            
+            
+        </div>
+        <div class="w-100">
+            
         </div>
     </div>
     <script src="AdminViewControl.js"></script>

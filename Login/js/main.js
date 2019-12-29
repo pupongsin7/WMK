@@ -1,4 +1,5 @@
-
+var Token = sessionStorage.getItem("key");
+if(Token != null)window.location.href = "/AdminView.html"
 var pathAPI = "http://localhost:3333/"
 const urlParams = new URLSearchParams(window.location.search);
 if(urlParams.get('username') != null && urlParams.get('pass') != null){
@@ -9,11 +10,17 @@ if(urlParams.get('username') != null && urlParams.get('pass') != null){
     }
     $.post(pathAPI+"admin/login", data,
     function (data, status) {
+        if(data.error != null)console.log("Wrong Login")
+        if(data.data != null){ 
+            sessionStorage.setItem("key", data);
+            sessionStorage.setItem("username", data);
+        // console.log(data)
+        window.location.href = "/AdminView.html"
+        }
         
-        console.log(data)
-        // PieChart(data.data.goodGPA, data.data.badGPA)
-    }).done(function () {
+       
 
+    }).done(function () {
     }).fail(function () {
 
     })

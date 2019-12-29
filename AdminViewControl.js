@@ -1,8 +1,68 @@
+const urlParams = new URLSearchParams(window.location.search);
+var logout = urlParams.get('logout')
+if(logout)sessionStorage.removeItem('key');
 var Token = sessionStorage.getItem("key");
 if(Token == null)window.location.href = "index.html"
+else{
+    document.getElementById("logout").style.cssText += "display:inline-block !important;"; 
+    // document.getElementById("userName").innerHTML =  `Welcome, `+ sessionStorage.getItem("username")
+}
 var namefilter = []
 var pathAPI = "http://localhost:3333/"
+var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['ผลการเรียนออกไปในแนวทางที่ดี', 'มีแนวโน้วที่จะมีผลการเรียนที่ไม่ดีควรปรับปรุงพฤติกรรมการใช้สมาร์ทโฟน'],
+            datasets: [{
+                // label: '# of Votes',
+                data: [0, 0],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+    var canvas = document.getElementById('myChart')
+    canvas.onclick = function(e) {
+        // console.log(e)
+        var slice = myChart.getElementAtEvent(e);
+        console.log(slice)
+        if (!slice.length) return; // return if not clicked on slice
+        var label = slice[0]._model.label;
+        switch (label) {
+           // add case for each label/slice
+           case 'ผลการเรียนออกไปในแนวทางที่ดี':
+            //   alert('clicked on slice 5');
+              window.open('/showData.html?result=good','_blank');
+              break;
+           case 'มีแนวโน้วที่จะมีผลการเรียนที่ไม่ดีควรปรับปรุงพฤติกรรมการใช้สมาร์ทโฟน':
+            //   alert('clicked on slice 6');
+            window.open('/showData.html?result=bad','_blank');
+              break;
+           // add rests ...
+        }
+     }
 $.when($.ready).then(async function () {
+    $("#NoResult").hide();
+
     await APIgetCheckList()
     await APIgetDataGraph(null)
     APIstudentList()
@@ -42,6 +102,7 @@ async function APIgetCheckList() {
                 // console.log(name)
                 str += CheckList(value, name)
             })
+            console.log(namefilter)
             document.getElementById("FilterList").innerHTML += str
         }).done(function () {
             // alert("second success");
@@ -88,14 +149,17 @@ async function APIgetDataGraph(data) {
 
     if (_.isUndefined(data)) {
         data = {
-            "brandId": null,
             "sexId": null,
+            "brandId": null,
             "yearId": null
         }
     }
+    sessionStorage.setItem("filter",JSON.stringify(data));
+
     $.post(pathAPI+"getDataGraph", data,
         async function (data, status) {
             await data
+
             PieChart(data.data.goodGPA, data.data.badGPA)
         }).done(function () {
 
@@ -104,13 +168,22 @@ async function APIgetDataGraph(data) {
         })
 }
 async function PieChart(resultGood, resultBad) {
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
+    if(resultBad == 0 && resultGood == 0){
+        $("#myChart").hide();
+        $("#NoResult").show();
+        $('#info').hide();
+    }
+    else {
+        $('#info').show();
+        $("#myChart").show();
+        $("#NoResult").hide();
+    
+    myChart = new Chart(ctx, {
         type: 'pie',
         data: {
             labels: ['ผลการเรียนออกไปในแนวทางที่ดี', 'มีแนวโน้วที่จะมีผลการเรียนที่ไม่ดีควรปรับปรุงพฤติกรรมการใช้สมาร์ทโฟน'],
             datasets: [{
-                label: '# of Votes',
+                // label: '# of Votes',
                 data: [resultGood, resultBad],
                 backgroundColor: [
                     'rgba(255, 99, 132, 1)',
@@ -135,7 +208,8 @@ async function PieChart(resultGood, resultBad) {
             responsive: true
         }
     });
-    await myChart 
+    await myChart
+    } 
 }
 async function FilterSearch() {
     EnableLoading()
@@ -168,15 +242,15 @@ async function GetDataFromFilter() {
         else if (index == 2) c = ListCheck
     })
     return {
-        brandId: a,
-        sexId: b,
+        sexId: a,
+        brandId: b,
         yearId: c,
     }
 }
 function APIstudentList(){
     data = {
-        "brandId": null,
         "sexId": null,
+        "brandId": null,
         "yearId": null,
         "GPA" : "bad"
     }
