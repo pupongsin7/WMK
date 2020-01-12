@@ -1,6 +1,6 @@
 var Token = sessionStorage.getItem("key");
 if(Token != null)window.location.href = "/AdminView.html"
-var pathAPI = "http://localhost:3333/"
+var pathAPI = "https://predict-gpa.herokuapp.com/"
 const urlParams = new URLSearchParams(window.location.search);
 if(urlParams.get('username') != null && urlParams.get('pass') != null){
     console.log("Have Data User + Pass")

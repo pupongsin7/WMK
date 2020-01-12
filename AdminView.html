@@ -37,19 +37,29 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul class="navbar-nav mr-auto">
-              <!-- <li class="nav-item active">
+                <!-- <li class="nav-item active">
                 <a class="nav-item nav-link active" href="#" id="userName">Admin<span
                     class="sr-only">(current)</span></a>
               </li> -->
-             <li class="nav-item">
-                <a class="nav-item nav-link active" href="Form.html" >กรอกแบบฟอร์มเพื่อทำนายผล<span class="sr-only">(current)</span></a>
-              </li>
+                <li class="nav-item">
+                    <a class="nav-item nav-link active" href="Form.html">กรอกแบบฟอร์มเพื่อทำนายผล<span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-item nav-link active" id="AdminManage" href="AdminView.html"
+                        style="display:none">การจัดการข้อมูล<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-item nav-link active" href="/img/J48Tree.svg" target="_blank">Model<span
+                            class="sr-only">(current)</span></a>
+                </li>
+
             </ul>
             <span class="navbar-text" id="logout" style="display:none">
                 <a class="nav-item nav-link active" href="AdminView.html?logout=true" id="userName">Logout<span
-                    class="sr-only">(current)</span></a>
+                        class="sr-only">(current)</span></a>
             </span>
-          </div>
+        </div>
     </nav>
     <!-- <include src="./header.html"></include> -->
     <div id="Loading" class="sticky w-100 h-100 d-flex flex-column align-items-center justify-content-center"
@@ -101,7 +111,7 @@
         </div>
         <div class="d-flex flex-column">
             <canvas id="myChart">
-                
+
             </canvas>
             <div id="NoResult" class="w-100">
                 <div class="d-flex w-100 justify-content-center align-items-center">
@@ -109,13 +119,13 @@
                 </div>
             </div>
             <div class="d-flex flex-column justify-content-center align-items-center pt-5">
-                <span class="text-danger" id="info">*คลิ๊กที่กราฟเพื่อดูข้อมูลนักศึกษา</span> 
+                <span class="text-danger" id="info">*คลิ๊กที่กราฟเพื่อดูข้อมูลนักศึกษา</span>
             </div>
-            
-            
+
+
         </div>
         <div class="w-100">
-            
+
         </div>
     </div>
     <script src="AdminViewControl.js"></script>

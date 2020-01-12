@@ -5,10 +5,12 @@ var Token = sessionStorage.getItem("key");
 if(Token == null)window.location.href = "index.html"
 else{
     document.getElementById("logout").style.cssText += "display:inline-block !important;"; 
+    document.getElementById("AdminManage").style.cssText += "display:inline-block !important;";
+
     // document.getElementById("userName").innerHTML =  `Welcome, `+ sessionStorage.getItem("username")
 }
 var namefilter = []
-var pathAPI = "http://localhost:3333/"
+var pathAPI = "https://predict-gpa.herokuapp.com/"
 var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'pie',

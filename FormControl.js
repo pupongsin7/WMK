@@ -73,8 +73,12 @@
 // });
 $(document).ready(function () {
     var Token = sessionStorage.getItem("key");
-    if(Token == null)document.getElementById("login").style.cssText += "display:inline-block !important;"; 
-    else document.getElementById("logout").style.cssText += "display:inline-block !important;"; 
+    if (Token == null) document.getElementById("login").style.cssText += "display:inline-block !important;";
+    else {
+        document.getElementById("logout").style.cssText += "display:inline-block !important;";
+        document.getElementById("AdminManage").style.cssText += "display:inline-block !important;";
+
+    }
     setTimeout(function () {
         // var x = document.getElementById("Loading");
         $("#Loading").fadeOut(500, function () { document.getElementById("Loading").style.cssText += "display:none !important;"; })
@@ -100,9 +104,9 @@ function EnableLoading() {
     var x = document.getElementById("Loading");
     if (x.style.display === "none") {
         x.style.display = "block";
-    } 
+    }
 }
-function DisableLoading(){
+function DisableLoading() {
     $("#Loading").fadeOut(500, function () { document.getElementById("Loading").style.cssText += "display:none !important;"; })
 }
 function serializeBeforeSend() {
@@ -150,7 +154,7 @@ function nextPrev(n) {
     currentTab = currentTab + n;
     //Scroll up to top
     window.scrollTo(0, 0);
-   
+
     // if you have reached the end of the form...
     if (currentTab >= x.length) {
         // ... the form gets submitted: //ถึงหน้า tab สุดท้ายแล้วจะเช็คละใส่ดาต้าผ่าน Get เพื่อไปหน้า result
@@ -160,7 +164,7 @@ function nextPrev(n) {
     }
     // Otherwise, display the correct tab:
     showTab(currentTab);
-   
+
 }
 
 function validateForm() {
