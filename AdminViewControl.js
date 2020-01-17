@@ -28,11 +28,11 @@ else {
 }
 
 const University = {
-    "KMUTNB" : {
+    "KMUTNB": {
         1: 'IT_KMUTNB',
         2: 'ITI',
     },
-    "RMUTT" : {
+    "RMUTT": {
         3: 'Business Computer',
         4: 'Computer Education',
         5: 'Computer Engineering',
@@ -170,7 +170,7 @@ function CheckList(data, name) {
         })
 
         str += ` <div class="col-6 col-lg-4 boxCheckbox" >
-        <input type="checkbox" class="option-input radio" id="`+name+val+`" name="`+ name + `" value="` + val + `" >&nbsp;` + displayName + `
+        <input type="checkbox" class="option-input radio" id="`+ name + val + `" name="` + name + `" value="` + val + `" >&nbsp;` + displayName + `
     </div>`
     })
 
@@ -375,6 +375,9 @@ function APIstudentList(data) {
                 table.destroy();
                 $('#myTable').DataTable(
                     {
+                        columnDefs: [
+                            { "className": "dt-center", "targets": "_all" }
+                        ],
                         responsive: true,
                         data: formatDataTable,
                         columns: [
@@ -385,7 +388,7 @@ function APIstudentList(data) {
                             { data: 'ชั้นปี' },
                             { data: 'ผลทำนาย' }
                         ],
-                        
+
                     }
                 );
             });
@@ -399,12 +402,12 @@ function APIstudentList(data) {
 
         })
 }
-function CheckAll(univer){
-    _.each($('input[name$="university"]'),function(val1,index){
-        _.each($('input[name$="brandDataList"]'),function(val2,index){
-            if(val2.value == University[univer][val2.value])console.log(true)
-            $('#'+val2.id).prop('checked', true)
+function CheckAll(univer) {
+    _.each($('input[name$="university"]'), function (val1, index) {
+        _.each($('input[name$="brandDataList"]'), function (val2, index) {
+            if (val2.value == University[univer][val2.value]) console.log(true)
+            $('#' + val2.id).prop('checked', true)
         })
     })
-    
+
 }

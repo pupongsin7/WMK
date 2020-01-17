@@ -1,55 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<title>Login V16</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->	
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Mitr&display=swap" rel="stylesheet">
+	<!--===============================================================================================-->
 </head>
+
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light sticky-top" style="z-index: 2;background-color:#cacaca;">
-        <a class="navbar-brand" href="/index.html">พฤติกรรมการใช้สมาร์ทโฟน</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+		<a class="navbar-brand" href="/index.html">พฤติกรรมการใช้สมาร์ทโฟน</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+			aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <ul class="navbar-nav mr-auto">
-              <!-- <li class="nav-item active">
+			<ul class="navbar-nav mr-auto">
+				<!-- <li class="nav-item active">
                 <a class="nav-item nav-link active" href="#" id="userName">Admin<span
                     class="sr-only">(current)</span></a>
               </li> -->
-             <li class="nav-item">
-                <a class="nav-item nav-link active" href="/Form.html" >กรอกแบบฟอร์มเพื่อทำนายผล<span class="sr-only">(current)</span></a>
-              </li>
-            </ul>
-            <span class="navbar-text" id="logout" style="display:none">
-                <a class="nav-item nav-link active" href="/AdminView.html?logout=true" id="userName">Logout<span
-                    class="sr-only">(current)</span></a>
-            </span>
-          </div>
-    </nav>
+				<li class="nav-item">
+					<a class="nav-item nav-link active" href="/Form.html">กรอกแบบฟอร์มเพื่อทำนายผล<span
+							class="sr-only">(current)</span></a>
+				</li>
+			</ul>
+			<span class="navbar-text" id="logout" style="display:none">
+				<a class="nav-item nav-link active" href="/AdminView.html?logout=true" id="userName">Logout<span
+						class="sr-only">(current)</span></a>
+			</span>
+		</div>
+	</nav>
+	<div id="Loading" class="sticky w-100 h-100 d-flex flex-column align-items-center justify-content-center"
+		style="background-color: rgb(255, 255, 255); z-index: 2;">
+		<div class="loader"></div>Loading...
+	</div>
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/1.jpg');">
 			<div class="wrap-login100 p-t-30 p-b-50">
@@ -58,7 +67,7 @@
 				</span>
 				<form class="login100-form validate-form p-b-33 p-t-5">
 
-					<div class="wrap-input100 validate-input" data-validate = "Enter username">
+					<div class="wrap-input100 validate-input" data-validate="Enter username">
 						<input class="input100" type="text" name="username" placeholder="User name">
 						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 					</div>
@@ -78,26 +87,28 @@
 			</div>
 		</div>
 	</div>
-	
+
 
 	<div id="dropDownSelect1"></div>
-	
-<!--===============================================================================================-->
+
+	<!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="vendor/bootstrap/js/popper.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="vendor/daterangepicker/moment.min.js"></script>
 	<script src="vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="js/main.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 </body>
+
 </html>

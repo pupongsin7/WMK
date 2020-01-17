@@ -12,8 +12,10 @@
 }
 @media (max-width: 500px) { 
   body{
-    font-family: 'Segoe UI', sans-serif;
+    /* font-family: 'Segoe UI', sans-serif; */
     font-size : 0.75rem;
+    font-family: 'Mitr', sans-serif;
+
 
   }
   /* canvas{
@@ -120,8 +122,10 @@
 }
 @media (min-width: 501px) { 
   body{
-    font-family: 'Segoe UI', sans-serif;
+    /* font-family: 'Segoe UI', sans-serif; */
     font-size : 1rem;
+    font-family: 'Mitr', sans-serif;
+
 
   }
   /* canvas{
@@ -229,6 +233,7 @@
 
 html {
   scroll-behavior: smooth;
+  font-family: 'Mitr', sans-serif;
 }
 td{
     padding-bottom : 5px;
@@ -238,11 +243,11 @@ hr{
     border-radius: 10px;
 }
 .container{
-    background-color:#cacaca;
+    background-color:#d4e9ff;
     padding-top : 30px !important;
 }
 nav{
-    background-color: rgb(76, 163, 175);
+    background-color: rgb(105, 183, 216)
 }
 .w-40{
     width: 40%;
@@ -251,7 +256,7 @@ nav{
   width: 30%;
 }
 .headerPartQuestion{
-    background-color: #cacaca; border-radius: 5px;
+    background-color: #d4e9ff; border-radius: 5px;
 }
 .sticky {
     position: fixed;
@@ -330,7 +335,7 @@ button {
   border: none;
   padding: 10px 20px;
   font-size: 17px;
-  font-family: Raleway;
+  /* font-family: Raleway; */
   cursor: pointer;
 }
 
