@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- UX/UI เปลี่ยนให้ ให้มันดันขึ้นมาให้หมด ลดการให้ผู้ใช้ต้อง Scrollbar ลงมา -->
+<!-- เปลี่ยนปุ่มเป็นภาษาไทย -->
 
 <head>
     <meta charset="UTF-8">
@@ -26,7 +28,7 @@
         crossorigin="anonymous"></script>
 
     <!-- <script src="FormControl.js"></script> -->
-    <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="z-index: 2;">
+    <!-- <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="z-index: 2;">
         <a class="navbar-brand" href="index.html">พฤติกรรมการใช้สมาร์ทโฟน</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,10 +36,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul class="navbar-nav mr-auto">
-                <!-- <li class="nav-item active">
-                <a class="nav-item nav-link active" href="#" id="userName">Admin<span
-                    class="sr-only">(current)</span></a>
-              </li> -->
+              
                 <li class="nav-item">
                     <a class="nav-item nav-link active" href="Form.html">กรอกแบบฟอร์มเพื่อทำนายผล<span
                             class="sr-only">(current)</span></a>
@@ -60,13 +59,62 @@
                         class="sr-only">(current)</span></a>
             </span>
         </div>
+    </nav> -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top w-100" style="z-index: 2;">
+        <a class="navbar-brand d-flex w-100 Htitle" href="index.html">
+            <span class="d-flex align-items-center">
+                <img src="/img/FITM_LOGO.png" alt="" style="width:50px;height: 30px;">
+            </span>
+            <span class="pl-1 w-100 d-flex align-items-center" style="white-space: normal;">
+                ระบบการพัฒนาตัวแบบเพื่อศึกษาความสัมพันธ์ระหว่างปัจจัยด้านพฤติกรรมการใช้สมาร์ทโฟนและผลสัมฤทธิ์ทางการศึกษาของนักศึกษาในหลักสูตรทางคอมพิวเตอร์
+                ด้วยเทคนิคการทำเหมืองข้อมูล
+            </span>
+        </a>
+    </nav>
+    <nav class="navbar navbar2 navbar-expand-lg navbar-light sticky-top1" style="z-index: 2;">
+        <a class="navbar-brand" href="index.html"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav mr-auto">
+                <!-- <li class="nav-item active">
+                <a class="nav-item nav-link active" href="#" id="userName">Admin<span
+                    class="sr-only">(current)</span></a>
+              </li> -->
+                <li class="nav-item">
+                    <a class="nav-item nav-link active" href="Form.html">เกี่ยวกับผู้วิจัย<span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-item nav-link active" id="AdminManage" href="AdminView.html"
+                        style="display:none">การจัดการข้อมูล<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-item nav-link active" href="/img/J48Tree.svg" target="_blank">โมเดลในการพัฒนา<span
+                            class="sr-only">(current)</span></a>
+                </li>
+
+            </ul>
+            <span class="navbar-text" id="logout" style="display:none">
+                <a class="nav-item nav-link active" href="AdminView.html?logout=true">ออกจากระบบ<span
+                        class="sr-only">(current)</span></a>
+            </span>
+            <span class="navbar-text" id="login" style="display:none">
+                <a class="nav-item nav-link active" href="Login/login.html">เข้าสู่ระบบ<span
+                        class="sr-only">(current)</span></a>
+            </span>
+
+        </div>
+
     </nav>
     <!-- <include src="./header.html"></include> -->
     <div id="Loading" class="sticky w-100 h-100 d-flex flex-column align-items-center justify-content-center"
         style="background-color: rgb(255, 255, 255); z-index: 2;">
         <div class="loader"></div>Loading...
     </div>
-    <div class="container pb-5 mt-2">
+    <div class="container pb-5">
         <h3>แบบสอบถามพฤติกรรมการใช้ Smartphone เพื่อทำนายผลการเรียน</h3>
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -103,10 +151,12 @@
                             </div>
                             <div class="form-group w-100">
                                 <div>3.เพศ <span class="text-danger">*</span></div>
-                                <div>&emsp;<input type="radio" class="option-input radio" name="ans1" value="male"
-                                        required>&nbsp;ชาย</div>
-                                <div> &emsp;<input type="radio" class="option-input radio" name="ans1"
-                                        value="female">&nbsp;หญิง </div>
+                                <div class="d-flex flex-row">
+                                    <div>&emsp;<input type="radio" class="option-input radio" name="ans1" value="male"
+                                            required>&nbsp;ชาย</div>
+                                    <div> &emsp;<input type="radio" class="option-input radio" name="ans1"
+                                            value="female">&nbsp;หญิง </div>
+                                </div>
                             </div>
                             <div class="form-group w-100">
                                 <label for="">4.ชั้นปี <span class="text-danger">*</span></label>
@@ -116,7 +166,7 @@
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
-                                    <option value="5">5</option>
+                                    <option value="5">อื่นๆ</option>
                                 </select>
                             </div>
                             <div class="form-group w-100">
@@ -266,35 +316,41 @@
                             <div class="form-group w-100">
                                 <div>12.ใช้ smartphone เพื่อค้นคว้าข้อมูล และทำกิจกรรมที่อาจารย์มอบหมายในห้องเรียน <span
                                         class="text-danger">*</span> </div>
-                                <div>
-                                    &emsp;<input type="radio" class="option-input radio" name="ans10" value="always"
-                                        required>&nbsp;ทุกครั้ง
-                                </div>
-                                <div>
-                                    &emsp;<input type="radio" class="option-input radio" name="ans10"
-                                        value="sometimes">&nbsp;บางครั้ง
-                                </div>
-                                <div>
-                                    &emsp;<input type="radio" class="option-input radio" name="ans10"
-                                        value="never">&nbsp;ไม่เคย
+                                <div class="d-flex flex-row">
+                                    <div>
+                                        &emsp;<input type="radio" class="option-input radio" name="ans10" value="always"
+                                            required>&nbsp;ทุกครั้ง
+                                    </div>
+                                    <div>
+                                        &emsp;<input type="radio" class="option-input radio" name="ans10"
+                                            value="sometimes">&nbsp;บางครั้ง
+                                    </div>
+                                    <div>
+                                        &emsp;<input type="radio" class="option-input radio" name="ans10"
+                                            value="never">&nbsp;ไม่เคย
+                                    </div>
+
                                 </div>
                             </div>
+
                             <div class="form-group w-100">
                                 <div>
                                     13.ใช้ smartphone เพื่อค้นคว้าเนื้อหาที่ไม่เข้าใจเพิ่มเติมนอกห้องเรียน <span
                                         class="text-danger">*</span>
                                 </div>
-                                <div>
-                                    &emsp;<input type="radio" class="option-input radio" name="ans11" value="always"
-                                        required>&nbsp;ทุกครั้ง
-                                </div>
-                                <div>
-                                    &emsp;<input type="radio" class="option-input radio" name="ans11"
-                                        value="sometimes">&nbsp;บางครั้ง
-                                </div>
-                                <div>
-                                    &emsp;<input type="radio" class="option-input radio" name="ans11"
-                                        value="never">&nbsp;ไม่เคย
+                                <div class="d-flex flex-row">
+                                    <div>
+                                        &emsp;<input type="radio" class="option-input radio" name="ans11" value="always"
+                                            required>&nbsp;ทุกครั้ง
+                                    </div>
+                                    <div>
+                                        &emsp;<input type="radio" class="option-input radio" name="ans11"
+                                            value="sometimes">&nbsp;บางครั้ง
+                                    </div>
+                                    <div>
+                                        &emsp;<input type="radio" class="option-input radio" name="ans11"
+                                            value="never">&nbsp;ไม่เคย
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group w-100">
@@ -302,36 +358,43 @@
                                     14.ใช้ smartphone เพื่อถ่ายรูป powerpoint ของอาจารย์แทนการจดบันทึก <span
                                         class="text-danger">*</span>
                                 </div>
-                                <div>
-                                    &emsp;<input type="radio" class="option-input radio" name="ans12" value="always"
-                                        required>&nbsp;ทุกครั้ง
+                                <div class="d-flex flex-row">
+                                    <div>
+                                        &emsp;<input type="radio" class="option-input radio" name="ans12" value="always"
+                                            required>&nbsp;ทุกครั้ง
+                                    </div>
+                                    <div>
+                                        &emsp;<input type="radio" class="option-input radio" name="ans12"
+                                            value="sometimes">&nbsp;บางครั้ง
+                                    </div>
+                                    <div>
+                                        &emsp;<input type="radio" class="option-input radio" name="ans12"
+                                            value="never">&nbsp;ไม่เคย
+                                    </div>
                                 </div>
-                                <div>
-                                    &emsp;<input type="radio" class="option-input radio" name="ans12"
-                                        value="sometimes">&nbsp;บางครั้ง
-                                </div>
-                                <div>
-                                    &emsp;<input type="radio" class="option-input radio" name="ans12"
-                                        value="never">&nbsp;ไม่เคย
-                                </div>
+
+
                             </div>
                             <div class="form-group w-100">
                                 <div>
                                     15.ใช้ smartphone เพื่อติดต่อ/สอบถาม เกี่ยวกับเรื่องการเรียน กับเพื่อน <span
                                         class="text-danger">*</span>
                                 </div>
-                                <div>
-                                    &emsp;<input type="radio" class="option-input radio" name="ans13" value="always"
-                                        required>&nbsp;ทุกครั้ง
+                                <div class="d-flex flex-row">
+                                    <div>
+                                        &emsp;<input type="radio" class="option-input radio" name="ans13" value="always"
+                                            required>&nbsp;ทุกครั้ง
+                                    </div>
+                                    <div>
+                                        &emsp;<input type="radio" class="option-input radio" name="ans13"
+                                            value="sometimes">&nbsp;บางครั้ง
+                                    </div>
+                                    <div>
+                                        &emsp;<input type="radio" class="option-input radio" name="ans13"
+                                            value="never">&nbsp;ไม่เคย
+                                    </div>
                                 </div>
-                                <div>
-                                    &emsp;<input type="radio" class="option-input radio" name="ans13"
-                                        value="sometimes">&nbsp;บางครั้ง
-                                </div>
-                                <div>
-                                    &emsp;<input type="radio" class="option-input radio" name="ans13"
-                                        value="never">&nbsp;ไม่เคย
-                                </div>
+
                             </div>
                             <div class="form-group w-100">
                                 <div>
@@ -411,44 +474,52 @@
                                     19.ใช้ smartphone สำหรับนำเสนอผลงาน/งานที่ได้รับมอบหมายหน้าชั้นเรียน <span
                                         class="text-danger">*</span>
                                 </div>
-                                <div>
-                                    &emsp;<input type="radio" class="option-input radio" name="ans17" value="always"
-                                        required>&nbsp;ทุกครั้ง
+                                <div class="d-flex flex-row">
+                                    <div>
+                                        &emsp;<input type="radio" class="option-input radio" name="ans17" value="always"
+                                            required>&nbsp;ทุกครั้ง
+                                    </div>
+                                    <div>
+                                        &emsp;<input type="radio" class="option-input radio" name="ans17"
+                                            value="sometimes">&nbsp;บางครั้ง
+                                    </div>
+                                    <div>
+                                        &emsp;<input type="radio" class="option-input radio" name="ans17"
+                                            value="never">&nbsp;ไม่เคย
+
+                                    </div>
                                 </div>
-                                <div>
-                                    &emsp;<input type="radio" class="option-input radio" name="ans17"
-                                        value="sometimes">&nbsp;บางครั้ง
-                                </div>
-                                <div>
-                                    &emsp;<input type="radio" class="option-input radio" name="ans17"
-                                        value="never">&nbsp;ไม่เคย
-                                    (ไม่เคย)
-                                </div>
+
+
                             </div>
                             <div class="form-group w-100">
                                 <div>
                                     20.ใช้ smartphone เพื่อติดต่อ/สอบถามอาจารย์ผู้สอนเกี่ยวกับเรื่องการเรียน <span
                                         class="text-danger">*</span>
                                 </div>
-                                <div>
-                                    &emsp;<input type="radio" class="option-input radio" name="ans18" value="always"
-                                        required>&nbsp;ทุกครั้ง
+                                <div class="d-flex flex-row">
+                                    <div>
+                                        &emsp;<input type="radio" class="option-input radio" name="ans18" value="always"
+                                            required>&nbsp;ทุกครั้ง
+                                    </div>
+                                    <div>
+                                        &emsp;<input type="radio" class="option-input radio" name="ans18"
+                                            value="sometimes">&nbsp;บางครั้ง
+                                    </div>
+                                    <div>
+                                        &emsp;<input type="radio" class="option-input radio" name="ans18"
+                                            value="never">&nbsp;ไม่เคย
+                                    </div>
                                 </div>
-                                <div>
-                                    &emsp;<input type="radio" class="option-input radio" name="ans18"
-                                        value="sometimes">&nbsp;บางครั้ง
-                                </div>
-                                <div>
-                                    &emsp;<input type="radio" class="option-input radio" name="ans18"
-                                        value="never">&nbsp;ไม่เคย
-                                </div>
+
+
                             </div>
                         </div>
                     </div>
 
                     <div class="d-flex w-100 justify-content-end">
-                        <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                        <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                        <button type="button" id="prevBtn" onclick="nextPrev(-1)">หน้าก่อนหน้า</button>
+                        <button type="button" id="nextBtn" onclick="nextPrev(1)">หน้าถัดไป</button>
                     </div>
                     <div style="text-align:center;margin-top:40px;">
                         <span class="step"></span>

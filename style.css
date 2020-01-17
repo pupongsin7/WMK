@@ -1,4 +1,15 @@
 
+@media (max-width: 990px) { 
+  .Htitle{
+    font-size: 11px ;
+  }
+}
+
+@media (min-width: 991px) { 
+  .Htitle{
+    font-size: 16px ;
+  }
+}
 @media (max-width: 500px) { 
   body{
     font-family: 'Segoe UI', sans-serif;
@@ -228,10 +239,10 @@ hr{
 }
 .container{
     background-color:#cacaca;
-    padding-top : 80px !important;
+    padding-top : 30px !important;
 }
 nav{
-    background-color: #4CAF50;
+    background-color: rgb(76, 163, 175);
 }
 .w-40{
     width: 40%;
@@ -386,3 +397,23 @@ select.invalid {
 .jssora051:hover {opacity:.8;}
 .jssora051.jssora051dn {opacity:.5;}
 .jssora051.jssora051ds {opacity:.3;pointer-events:none;}
+
+
+
+
+/*  Navbar */
+.navbar{
+  padding: 0.2rem 0.5rem !important;
+}
+.navbar2{
+  padding: 0.3rem 0.5rem !important
+}
+.sticky-top1 {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 46px;
+  z-index: 1020;
+}
+.form-control{
+  font-size : unset
+}

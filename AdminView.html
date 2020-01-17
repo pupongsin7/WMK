@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- ลดขนาดกราฟ และ เพิ่มหัวข้อให้กราฟ   เปลี่ยยกราฟ เป็นสีเขียว สีแดงตามเกรดที่ดี -->
+<!-- แบ่งเป็นสองหน้า ซ้ายเป็น ข้อมูล datatable และ ขวาเป็น graph-->
+<!-- filter เพิ่ม เป็น 2 มหาลัย แต่ตอนส่งให้แอลเปลี่ยนเป็น array สาขาในมหาลัยนั้น -->
+<!-- Cannot reinitialise DataTable -->
 
 <head>
     <meta charset="UTF-8">
@@ -9,6 +13,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    
+
 
 </head>
 
@@ -26,11 +34,24 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    
 
     <!-- <script src="ControlForm.js"></script> -->
-    <nav class="navbar navbar-expand-lg navbar-light sticky" style="z-index: 2;">
-        <a class="navbar-brand" href="index.html">พฤติกรรมการใช้สมาร์ทโฟน</a>
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top w-100" style="z-index: 2;">
+        <a class="navbar-brand d-flex w-100 Htitle" href="index.html">
+            <span class="d-flex align-items-center">
+                <img src="/img/FITM_LOGO.png" alt="" style="width:50px;height: 30px;">
+            </span>
+            <span class="pl-1 w-100 d-flex align-items-center" style="white-space: normal;">
+                ระบบการพัฒนาตัวแบบเพื่อศึกษาความสัมพันธ์ระหว่างปัจจัยด้านพฤติกรรมการใช้สมาร์ทโฟนและผลสัมฤทธิ์ทางการศึกษาของนักศึกษาในหลักสูตรทางคอมพิวเตอร์
+                ด้วยเทคนิคการทำเหมืองข้อมูล
+            </span>
+        </a>
+    </nav>
+    <nav class="navbar navbar2 navbar-expand-lg navbar-light sticky-top1" style="z-index: 2;">
+        <a class="navbar-brand" href="index.html"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -42,7 +63,7 @@
                     class="sr-only">(current)</span></a>
               </li> -->
                 <li class="nav-item">
-                    <a class="nav-item nav-link active" href="Form.html">กรอกแบบฟอร์มเพื่อทำนายผล<span
+                    <a class="nav-item nav-link active" href="Form.html">เกี่ยวกับผู้วิจัย<span
                             class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
@@ -50,23 +71,29 @@
                         style="display:none">การจัดการข้อมูล<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-item nav-link active" href="/img/J48Tree.svg" target="_blank">Model<span
+                    <a class="nav-item nav-link active" href="/img/J48Tree.svg" target="_blank">โมเดลในการพัฒนา<span
                             class="sr-only">(current)</span></a>
                 </li>
 
             </ul>
             <span class="navbar-text" id="logout" style="display:none">
-                <a class="nav-item nav-link active" href="AdminView.html?logout=true" id="userName">Logout<span
+                <a class="nav-item nav-link active" href="AdminView.html?logout=true">ออกจากระบบ<span
                         class="sr-only">(current)</span></a>
             </span>
+            <span class="navbar-text" id="login" style="display:none">
+                <a class="nav-item nav-link active" href="Login/login.html">เข้าสู่ระบบ<span
+                        class="sr-only">(current)</span></a>
+            </span>
+
         </div>
+
     </nav>
     <!-- <include src="./header.html"></include> -->
     <div id="Loading" class="sticky w-100 h-100 d-flex flex-column align-items-center justify-content-center"
         style="background-color: rgb(255, 255, 255); z-index: 2;">
         <div class="loader"></div>Loading...
     </div>
-    <div class="container pb-5">
+    <div class="container pb-5" style="margin-top:80px !important;">
         <div class="d-flex flex-column justify-content-center align-items-center">
             <div class="card w-100">
                 <div class="card-header" id="headingOne">
@@ -109,24 +136,76 @@
             </div>
 
         </div>
-        <div class="d-flex flex-column">
-            <canvas id="myChart">
+        <div class="row pt-2">
+            <div class="col-12 col-xs-12 col-lg-5">
+                <canvas id="myChart">
 
-            </canvas>
-            <div id="NoResult" class="w-100">
-                <div class="d-flex w-100 justify-content-center align-items-center">
-                    <h1>No result.</h1>
+                </canvas>
+                <div id="NoResult" class="w-100">
+                    <div class="d-flex w-100 justify-content-center align-items-center">
+                        <h1>No result.</h1>
+                    </div>
                 </div>
+                <div class="d-flex flex-column justify-content-center align-items-center pt-5">
+                    <span class="text-danger" id="info">*คลิ๊กที่กราฟเพื่อดูข้อมูลนักศึกษา</span>
+                </div>
+
+
             </div>
-            <div class="d-flex flex-column justify-content-center align-items-center pt-5">
-                <span class="text-danger" id="info">*คลิ๊กที่กราฟเพื่อดูข้อมูลนักศึกษา</span>
+            <div class="col-12 col-xs-12 col-lg-7" style="font-size: 12px;">
+                <table class="table table-striped" id="myTable">
+                    <thead>
+                        <th class="min-tablet">รหัสนักศึกษา</th>
+                        <th class="all">ชื่อ</th>
+                        <th class="min-tablet">เพศ</th>
+                        <th class="all">สาขา</th>
+                        <th class="min-tablet">ชั้นปี</th>
+                        <th class="all">ผลทำนาย</th>
+                    </thead>
+                    <tbody id="data">
+                        <!-- <tr>
+                            <td>5906021610385</td>
+                            <td>สุรเดช ลีรุจิกุล</td>
+                            <td>Male</td>
+                            <td>IT_KMUTNB</td>
+                            <td>4</td>
+                            <td>Bad</td>
+                            </tr><tr>
+                            <td>5906021611023</td>
+                            <td>ณิชกานต์ พราหมเภทย์</td>
+                            <td>Female</td>
+                            <td>IT_KMUTNB</td>
+                            <td>4</td>
+                            <td>Bad</td>
+                            </tr><tr>
+                            <td>5906021613085</td>
+                            <td>นายสุรเดช ลีรุจิกุล</td>
+                            <td>Female</td>
+                            <td>ITI</td>
+                            <td>5</td>
+                            <td>Bad</td>
+                            </tr><tr>
+                            <td>5906021613088</td>
+                            <td>นายสุรเดช ลีรุจิกุล</td>
+                            <td>Female</td>
+                            <td>ITI</td>
+                            <td>5</td>
+                            <td>Bad</td>
+                            </tr><tr>
+                            <td>5906021631024</td>
+                            <td>Nut Phupongsin</td>
+                            <td>Male</td>
+                            <td>IT_KMUTNB</td>
+                            <td>4</td>
+                            <td>Bad</td>
+                            </tr> -->
+                        </tbody>
+                </table>
             </div>
 
-
+          
         </div>
-        <div class="w-100">
 
-        </div>
     </div>
     <script src="AdminViewControl.js"></script>
 </body>

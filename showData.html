@@ -30,34 +30,54 @@
     
 
     <!-- <script src="ControlForm.js"></script> -->
-    <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="z-index: 2;">
-        <a class="navbar-brand" href="#">พฤติกรรมการใช้สมาร์ทโฟน</a>
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top w-100" style="z-index: 2;">
+        <a class="navbar-brand d-flex w-100 Htitle" href="index.html">
+            <span class="d-flex align-items-center">
+                <img src="/img/FITM_LOGO.png" alt="" style="width:50px;height: 30px;">
+            </span>
+            <span class="pl-1 w-100 d-flex align-items-center" style="white-space: normal;">
+                ระบบการพัฒนาตัวแบบเพื่อศึกษาความสัมพันธ์ระหว่างปัจจัยด้านพฤติกรรมการใช้สมาร์ทโฟนและผลสัมฤทธิ์ทางการศึกษาของนักศึกษาในหลักสูตรทางคอมพิวเตอร์
+                ด้วยเทคนิคการทำเหมืองข้อมูล
+            </span>
+        </a>
+    </nav>
+    <nav class="navbar navbar2 navbar-expand-lg navbar-light sticky-top1" style="z-index: 2;">
+        <a class="navbar-brand" href="index.html"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
+                <!-- <li class="nav-item active">
                 <a class="nav-item nav-link active" href="#" id="userName">Admin<span
                     class="sr-only">(current)</span></a>
-              </li>
-              <!-- <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
               </li> -->
+                <li class="nav-item">
+                    <a class="nav-item nav-link active" href="Form.html">เกี่ยวกับผู้วิจัย<span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-item nav-link active" id="AdminManage" href="AdminView.html"
+                        style="display:none">การจัดการข้อมูล<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-item nav-link active" href="/img/J48Tree.svg" target="_blank">โมเดลในการพัฒนา<span
+                            class="sr-only">(current)</span></a>
+                </li>
+
             </ul>
             <span class="navbar-text" id="logout" style="display:none">
-                <a class="nav-item nav-link active" href="AdminView.html?logout=true" >Logout<span
-                    class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="AdminView.html?logout=true">ออกจากระบบ<span
+                        class="sr-only">(current)</span></a>
             </span>
             <span class="navbar-text" id="login" style="display:none">
-                <a class="nav-item nav-link active" href="Login/login.html" >Login<span
-                    class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="Login/login.html">เข้าสู่ระบบ<span
+                        class="sr-only">(current)</span></a>
             </span>
-          </div>
+
+        </div>
+
     </nav>
     <!-- <include src="./header.html"></include> -->
     <div id="Loading" class="sticky w-100 h-100 d-flex flex-column align-items-center justify-content-center"
