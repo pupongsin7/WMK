@@ -1,19 +1,36 @@
+// const sex = {
+//     1: 'Male',
+//     2: 'Female'
+// }
+// const branch = {
+//     1: 'IT_KMUTNB',
+//     2: 'ITI',
+//     3: 'Business Computer',
+//     4: 'Computer Education',
+//     5: 'Computer Engineering',
+//     6: 'IT_RMUTT',
+//     7: 'Educational Information Technology',
+// }
+// const gpa = {
+//     '(2.5-inf)': 'Good',
+//     '(-inf-2.5]': 'Bad'
+// }
 const sex = {
-    1: 'Male',
-    2: 'Female'
+    1: 'ชาย',
+    2: 'หญิง'
 }
 const branch = {
     1: 'IT_KMUTNB',
-    2: 'ITI',
-    3: 'Business Computer',
-    4: 'Computer Education',
-    5: 'Computer Engineering',
+    2: 'ITI_KMUTNB',
+    3: 'Business_Computer_RMUTT',
+    4: 'Computer_Education_RMUTT',
+    5: 'Computer_Engineering_RMUTT',
     6: 'IT_RMUTT',
-    7: 'Educational Information Technology',
+    7: 'Educational_Information_Technology_RMUTT',
 }
 const gpa = {
-    '(2.5-inf)': 'Good',
-    '(-inf-2.5]': 'Bad'
+    '(2.5-inf)': 'ผลการเรียนดี',
+    '(-inf-2.5]': 'ผลการเรียนควรปรับปรุง'
 }
 const urlParams = new URLSearchParams(window.location.search);
 var logout = urlParams.get('logout')
@@ -30,14 +47,14 @@ else {
 const University = {
     "KMUTNB": {
         1: 'IT_KMUTNB',
-        2: 'ITI',
+        2: 'ITI_KMUTNB',
     },
     "RMUTT": {
-        3: 'Business Computer',
-        4: 'Computer Education',
-        5: 'Computer Engineering',
+        3: 'Business_Computer_RMUTT',
+        4: 'Computer_Education_RMUTT',
+        5: 'Computer_Engineering_RMUTT',
         6: 'IT_RMUTT',
-        7: 'Educational Information Technology',
+        7: 'Educational_Information_Technology_RMUTT',
     }
 }
 var namefilter = []
@@ -77,18 +94,18 @@ var canvas = document.getElementById('myChart')
 canvas.onclick = function (e) {
     // console.log(e)
     var slice = myChart.getElementAtEvent(e);
-    console.log(slice)
+    // console.log(slice)
     if (!slice.length) return; // return if not clicked on slice
     var label = slice[0]._model.label;
     switch (label) {
         // add case for each label/slice
         case 'ผลการเรียนออกไปในแนวทางที่ดี':
             //   alert('clicked on slice 5');
-            window.open('/showData.html?result=good', '_blank');
+            // window.open('/showData.html?result=good', '_blank'); //ถ้าจะให้คลิ๊กกราฟได้เปิดตรงนี้
             break;
         case 'มีแนวโน้วที่จะมีผลการเรียนที่ไม่ดีควรปรับปรุงพฤติกรรมการใช้สมาร์ทโฟน':
             //   alert('clicked on slice 6');
-            window.open('/showData.html?result=bad', '_blank');
+            // window.open('/showData.html?result=bad', '_blank'); //ถ้าจะให้คลิ๊กกราฟได้เปิดตรงนี้
             break;
         // add rests ...
     }
@@ -162,9 +179,10 @@ function CheckList(data, name) {
     let val, displayName
     _.each(data, function (value, index) {
         let i = 0
-
         _.each(value, function (exxx, key) {
-            if (i == 0) val = exxx
+            if (i == 0){
+                val = exxx
+            }
             else if (i == 1) displayName = exxx
             i++
         })
@@ -177,22 +195,22 @@ function CheckList(data, name) {
 
     str += `</div></div>`
     //aDD University In filter
-    if (name == "sexDataList") {
-        str += `<div class="d-flex flex-row justify-content-start align-items-center w-100">
-        <div class="row w-100">
-            <div class="col-12 col-lg-12 d-flex justify-content-center align-items-center font-weight-bold">
-                University
-            </div>
-            <div class="col-6 col-lg-4 boxCheckbox" >
-                <input type="checkbox" class="option-input radio" name="university" id="u1" onchange="CheckAll('KMUTNB')" value="KMUTNB" >&nbsp;KMUTNB
-            </div>
-            <div class="col-6 col-lg-4 boxCheckbox" >
-                <input type="checkbox" class="option-input radio" name="university" id="u2" onchange="CheckAll('RMUTT')" value="RMUTT" >&nbsp;RMUTT
-            </div>
-            </div>
-        </div>
-            `
-    }
+    // if (name == "sexDataList") {
+    //     str += `<div class="d-flex flex-row justify-content-start align-items-center w-100">
+    //     <div class="row w-100">
+    //         <div class="col-12 col-lg-12 d-flex justify-content-center align-items-center font-weight-bold">
+    //             University
+    //         </div>
+    //         <div class="col-6 col-lg-4 boxCheckbox" >
+    //             <input type="checkbox" class="option-input radio" name="university" id="u1" onchange="CheckAll('KMUTNB')" value="KMUTNB" >&nbsp;KMUTNB
+    //         </div>
+    //         <div class="col-6 col-lg-4 boxCheckbox" >
+    //             <input type="checkbox" class="option-input radio" name="university" id="u2" onchange="CheckAll('RMUTT')" value="RMUTT" >&nbsp;RMUTT
+    //         </div>
+    //         </div>
+    //     </div>
+    //         `
+    // }
     //End aDD University In filter
 
 
@@ -370,10 +388,10 @@ function APIstudentList(data) {
             <td>`+ gpa[data.data[i].studentData.studentHistory.GPA] + `</td>
             </tr>`
             }
-            $(document).ready(function () {
+            $(document).ready(async function () {
                 table = $('#myTable').DataTable()
                 table.destroy();
-                $('#myTable').DataTable(
+                table = await $('#myTable').DataTable(
                     {
                         columnDefs: [
                             { "className": "dt-center", "targets": "_all" }
@@ -388,9 +406,14 @@ function APIstudentList(data) {
                             { data: 'ชั้นปี' },
                             { data: 'ผลทำนาย' }
                         ],
-
                     }
                 );
+                $('#myTable tbody').on('click', 'tr', function (index) {
+                    var data = table.rows(this).data();
+                    // console.log(data[0].รหัสนักศึกษา)
+                    window.open('/showData.html?id='+data[0].รหัสนักศึกษา, '_blank');
+                    // alert('You clicked on ' + data + '\'s row');
+                });
             });
             // console.log(str)
             // document.getElementById("data").innerHTML = str

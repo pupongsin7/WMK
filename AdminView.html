@@ -36,7 +36,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-    
+
 
     <!-- <script src="ControlForm.js"></script> -->
     <nav class="navbar navbar-expand-lg navbar-light sticky-top w-100" style="z-index: 2;">
@@ -63,7 +63,7 @@
                     class="sr-only">(current)</span></a>
               </li> -->
                 <li class="nav-item">
-                    <a class="nav-item nav-link active" href="Form.html">เกี่ยวกับผู้วิจัย<span
+                    <a class="nav-item nav-link active" href="About.html">เกี่ยวกับผู้วิจัย<span
                             class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
@@ -147,13 +147,14 @@
                     </div>
                 </div>
                 <div class="d-flex flex-column justify-content-center align-items-center pt-5">
-                    <span class="text-danger" id="info">*คลิ๊กที่กราฟเพื่อดูข้อมูลนักศึกษา</span>
+                    <span class="text-danger" id="info">*คลิ๊กที่ข้อมูลในตารางเพื่อดูข้อมูลนักศึกษาย้อนหลัง</span>
                 </div>
 
 
             </div>
             <div class="col-12 col-xs-12 col-lg-7" style="font-size: 12px;">
                 <table class="table table-striped" id="myTable">
+
                     <thead>
                         <th class="min-tablet">รหัสนักศึกษา</th>
                         <th class="all" width=30%>ชื่อ</th>
@@ -163,7 +164,11 @@
                         <th class="all">ผลทำนาย</th>
                     </thead>
                     <tbody id="data">
-                        <!-- <tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- <tr>
                             <td>5906021610385</td>
                             <td>สุรเดช ลีรุจิกุล</td>
                             <td>Male</td>
@@ -199,13 +204,6 @@
                             <td>4</td>
                             <td>Bad</td>
                             </tr> -->
-                        </tbody>
-                </table>
-            </div>
-
-          
-        </div>
-
     </div>
     <script src="AdminViewControl.js"></script>
 </body>
