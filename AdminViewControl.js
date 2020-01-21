@@ -325,7 +325,7 @@ function APIstudentList(data) {
             "brandId": data.brandId,
             "sexId": data.sexId,
             "yearId": data.yearId,
-            "GPA": "bad"
+            "GPA": ["bad","good"]
         }
     }
     else {
@@ -333,7 +333,7 @@ function APIstudentList(data) {
             "brandId": null,
             "sexId": null,
             "yearId": null,
-            "GPA": "bad"
+            "GPA": ["bad","good"]
         }
     }
     console.log(data)
