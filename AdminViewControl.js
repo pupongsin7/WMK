@@ -91,24 +91,35 @@ var myChart = new Chart(ctx, {
     }
 });
 var canvas = document.getElementById('myChart')
-canvas.onclick = function (e) {
+canvas.onclick = async function (e) {
     // console.log(e)
     var slice = myChart.getElementAtEvent(e);
     // console.log(slice)
     if (!slice.length) return; // return if not clicked on slice
     var label = slice[0]._model.label;
+
     switch (label) {
         // add case for each label/slice
         case 'ผลการเรียนออกไปในแนวทางที่ดี':
             //   alert('clicked on slice 5');
+            $('input[type=search]').val('ผลการเรียนดี')
+            table.search('ผลการเรียนดี').draw();
+
             // window.open('/showData.html?result=good', '_blank'); //ถ้าจะให้คลิ๊กกราฟได้เปิดตรงนี้
             break;
         case 'มีแนวโน้วที่จะมีผลการเรียนที่ไม่ดีควรปรับปรุงพฤติกรรมการใช้สมาร์ทโฟน':
             //   alert('clicked on slice 6');
+            $('input[type=search]').val('ผลการเรียนควรปรับปรุง')
+            table.search('ผลการเรียนควรปรับปรุง').draw();
             // window.open('/showData.html?result=bad', '_blank'); //ถ้าจะให้คลิ๊กกราฟได้เปิดตรงนี้
             break;
         // add rests ...
     }
+    
+
+
+
+
 }
 $.when($.ready).then(async function () {
     $("#NoResult").hide();
@@ -146,14 +157,14 @@ async function APIgetCheckList() {
     // $.get("http://192.168.1.8:3333/getCheckList",
     $.get(pathAPI + "getCheckList",
         function (data, status) {
-            console.log(data.data)
+            // console.log(data.data)
             let str = ""
             _.each(data.data, function (value, name) {
                 // console.log(name)
                 str += CheckList(value, name)
             })
-            console.log(namefilter)
-            document.getElementById("FilterList").innerHTML += str
+            // console.log(namefilter)
+            // document.getElementById("FilterList").innerHTML += str
         }).done(function () {
             // alert("second success");
             // $("#Loading").fadeOut(500, function () { document.getElementById("Loading").style.cssText += "display:none !important;"; })
@@ -180,7 +191,7 @@ function CheckList(data, name) {
     _.each(data, function (value, index) {
         let i = 0
         _.each(value, function (exxx, key) {
-            if (i == 0){
+            if (i == 0) {
                 val = exxx
             }
             else if (i == 1) displayName = exxx
@@ -343,7 +354,7 @@ function APIstudentList(data) {
             "brandId": data.brandId,
             "sexId": data.sexId,
             "yearId": data.yearId,
-            "GPA": ["bad","good"]
+            "GPA": ["bad", "good"]
         }
     }
     else {
@@ -351,7 +362,7 @@ function APIstudentList(data) {
             "brandId": null,
             "sexId": null,
             "yearId": null,
-            "GPA": ["bad","good"]
+            "GPA": ["bad", "good"]
         }
     }
     console.log(data)
@@ -411,7 +422,7 @@ function APIstudentList(data) {
                 $('#myTable tbody').on('click', 'tr', function (index) {
                     var data = table.rows(this).data();
                     // console.log(data[0].รหัสนักศึกษา)
-                    window.open('/showData.html?id='+data[0].รหัสนักศึกษา, '_blank');
+                    window.open('/showData.html?id=' + data[0].รหัสนักศึกษา, '_blank');
                     // alert('You clicked on ' + data + '\'s row');
                 });
             });
@@ -425,12 +436,63 @@ function APIstudentList(data) {
 
         })
 }
-function CheckAll(univer) {
-    _.each($('input[name$="university"]'), function (val1, index) {
-        _.each($('input[name$="brandDataList"]'), function (val2, index) {
-            if (val2.value == University[univer][val2.value]) console.log(true)
-            $('#' + val2.id).prop('checked', true)
-        })
-    })
+// function CheckAll(univer) {
+//     _.each($('input[name$="university"]'), function (val1, index) {
+//         _.each($('input[name$="brandDataList"]'), function (val2, index) {
+//             if (val2.value == University[univer][val2.value]) console.log(true)
+//             $('#' + val2.id).prop('checked', true)
+//         })
+//     })
 
-}
+// }
+$(document).ready(function () {
+    $("#checkU1").change(function () {
+        if (this.checked) {
+            $(".CheckKMUTNB").each(function () {
+                this.checked = true;
+            })
+        } else {
+            $(".CheckKMUTNB").each(function () {
+                this.checked = false;
+            })
+        }
+    });
+
+    $(".CheckKMUTNB").click(function () {
+        if ($(this).is(":checked")) {
+            var isAllChecked = 0;
+            $(".CheckKMUTNB").each(function () {
+                if (!this.checked)
+                    isAllChecked = 1;
+            })
+            if (isAllChecked == 0) { $("#checkU1").prop("checked", true); }
+        } else {
+            $("#checkU1").prop("checked", false);
+        }
+    });
+
+    $("#checkU2").change(function () {
+        if (this.checked) {
+            $(".CheckRMUTT").each(function () {
+                this.checked = true;
+            })
+        } else {
+            $(".CheckRMUTT").each(function () {
+                this.checked = false;
+            })
+        }
+    });
+
+    $(".CheckRMUTT").click(function () {
+        if ($(this).is(":checked")) {
+            var isAllChecked = 0;
+            $(".CheckRMUTT").each(function () {
+                if (!this.checked)
+                    isAllChecked = 1;
+            })
+            if (isAllChecked == 0) { $("#checkU2").prop("checked", true); }
+        } else {
+            $("#checkU2").prop("checked", false);
+        }
+    });
+});
