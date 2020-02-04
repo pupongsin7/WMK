@@ -32,10 +32,13 @@ const gpa = {
     '(2.5-inf)': 'ผลการเรียนดี',
     '(-inf-2.5]': 'ผลการเรียนควรปรับปรุง'
 }
-console.log(sex[2])
+// console.log(sex[2])
 var Token = sessionStorage.getItem("key");
 if (Token == null) window.location.href = "index.html"
 else {
+    document.getElementById("logout").style.cssText += "display:inline-block !important;";
+    document.getElementById("AdminManage").style.cssText += "display:inline-block !important;";
+
     // document.getElementById("userName").innerHTML =  `Welcome, `+ sessionStorage.getItem("username")
 }
 const urlParams = new URLSearchParams(window.location.search);
@@ -63,7 +66,7 @@ function APIstudentList() {
     $.get(pathAPI + "studentList/" + id,
         async function (data, status) {
             await data
-            console.log(data.data[0].studentHistory)
+            // console.log(data.data[0].studentHistory)
             let studentHistory = data.data[0]
             document.getElementById("StuId").innerHTML = studentHistory.studentDataId
             document.getElementById("StuName").innerHTML = studentHistory.name
@@ -82,7 +85,7 @@ function APIstudentList() {
             $(document).ready(async function () {
                 table = $('#myTable').DataTable()
                 table.destroy();
-                console.log(formatDataTable)
+                // console.log(formatDataTable)
                 table = await $('#myTable').DataTable(
                     {
                         // columnDefs: [

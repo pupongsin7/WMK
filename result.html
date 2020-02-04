@@ -140,12 +140,22 @@
             var pathAPI = "https://predict-gpa.herokuapp.com/"
             // console.log(urlParams.has('ans1')); // true
             // console.log(urlParams.get('ans1')); // "shirt"
-            let ResultGPA = urlParams.get('res')
-            let prob = urlParams.get('prob')
-            let resBad = urlParams.get('resBad')
-            let resGood = urlParams.get('resGood')
-            let HistoryCount = urlParams.get('History')
-            let studentName = urlParams.get('stuName') + " " + urlParams.get('stuLastname')
+            // let ResultGPA = urlParams.get('res')
+            // let prob = urlParams.get('prob')
+            // let resBad = urlParams.get('resBad')
+            // let resGood = urlParams.get('resGood')
+            // let HistoryCount = urlParams.get('History')
+            let ResultGPA = sessionStorage.getItem("res");
+            let prob = sessionStorage.getItem("prob");
+            let resBad = sessionStorage.getItem("resBad");
+            let resGood =  sessionStorage.getItem("resGood");
+            let HistoryCount = sessionStorage.getItem("History");
+            sessionStorage.removeItem('res');
+            sessionStorage.removeItem('prob');
+            sessionStorage.removeItem('resBad');
+            sessionStorage.removeItem('resGood');
+            sessionStorage.removeItem('History');
+            // let studentName = urlParams.get('stuName') + " " + urlParams.get('stuLastname')
             let str = ""
             if (ResultGPA == "1") {
                 document.getElementById("icons").innerHTML = `<i class="fas fa-smile-beam text-success"></i>`

@@ -1,5 +1,4 @@
-
-
+var pathAPI = "https://predict-gpa.herokuapp.com/"
 
 // const url = 'https://192.168.1.8:3333/predict';
 
@@ -157,9 +156,90 @@ function nextPrev(n) {
 
     // if you have reached the end of the form...
     if (currentTab >= x.length) {
+        EnableLoading()
         // ... the form gets submitted: //ถึงหน้า tab สุดท้ายแล้วจะเช็คละใส่ดาต้าผ่าน Get เพื่อไปหน้า result
-        if (serializeBeforeSend()) document.getElementById("form").submit();
+        // if (serializeBeforeSend()) document.getElementById("form").submit();
+        let data = $('form').serialize()
+        const urlParams = new URLSearchParams(data);
+        // console.log(data)
+        // console.log(urlParams)
+        // console.log(urlParams.get('stuId'))
+        data = {
+            "stuId": urlParams.get('stuId'),
+            "studentName": urlParams.get('stuName') + " " + urlParams.get('stuLastname'),
+            "ans1": urlParams.get('ans1'),
+            "ans2": urlParams.get('ans2'),  
+            "ans3": urlParams.get('ans3'),
+            "ans4": urlParams.get('ans4') <= 2.5 ? "BAD" : "GOOD",
+            "ans5": urlParams.get('ans5'),
+            "ans6": urlParams.get('ans6'),
+            "ans7": urlParams.get('ans7'),
+            "ans8": urlParams.get('ans8'),
+            "ans9": urlParams.get('ans9'),
+            "ans10": urlParams.get('ans10'),
+            "ans11": urlParams.get('ans11'),
+            "ans12": urlParams.get('ans12'),
+            "ans13": urlParams.get('ans13'),
+            "ans14": urlParams.get('ans14'),
+            "ans15": urlParams.get('ans15'),
+            "ans16": urlParams.get('ans16'),
+            "ans17": urlParams.get('ans17'),
+            "ans18": urlParams.get('ans18'),
+            "ans19": "?"
+        }
+        // console.log(data)
 
+        // PieChart(10,20)
+
+        // console.log(data)
+        // $.post("http://192.168.1.8:3333/predict", data,
+        $.post(pathAPI + "predict", data,
+            function (data, status) {
+                let str = ""
+                console.log(data)
+                // alert("Data: " + data.data.GPA + "\nStatus: " + status);
+                if (data.data.GPA == "(2.5-inf)") {
+                    // document.getElementById("icons").innerHTML = `<i class="fas fa-smile-beam fa-10x text-success"></i>`
+                    // str = `ผลการเรียนออกไปในแนวทางที่ดี`
+                    str = "1"
+                }
+                else if (data.data.GPA == "(-inf-2.5]") {
+                    // document.getElementById("icons").innerHTML = `<i class="fas fa-sad-cry fa-10x text-danger"></i>`
+                    // str = `มีแนวโน้วที่จะมีผลการเรียนที่ไม่ดีควรปรับปรุงพฤติกรรมการใช้สมาร์ทโฟน`
+                    str = "2"
+                }
+                //set result and prob
+                let resultBad = data.data.historyData[0].count
+                let resultGood = data.data.historyData[1].count
+                let HistoryCount = resultBad + resultGood
+           
+                // window.location.href = "result.html?res=" + str + "&prob=" + data.data.prob + "&resBad=" + resultBad + "&resGood=" + resultGood + "&History=" + HistoryCount;
+                sessionStorage.setItem("Link","result.html?res=" + str + "&prob=" + data.data.prob + "&resBad=" + resultBad + "&resGood=" + resultGood + "&History=" + HistoryCount)
+                sessionStorage.setItem("res", str);
+                sessionStorage.setItem("prob", data.data.prob);
+                sessionStorage.setItem("resBad", resultBad);
+                sessionStorage.setItem("resGood", resultGood);
+                sessionStorage.setItem("History", HistoryCount);
+                window.location.href = "result.html";
+
+                // document.getElementById("result").innerHTML = str
+                // document.getElementById("prob").innerHTML = `ความน่าจะเป็นเท่ากับ ` + data.data.prob
+
+                //set to create pie chart
+
+                // console.log(resultBad)
+                // console.log(resultGood)
+                // PieChart(resultGood, resultBad)
+
+            }).done(function () {
+                // alert("second success");
+                // $("#Loading").fadeOut(500, function () { document.getElementById("Loading").style.cssText += "display:none !important;"; })
+            }).fail(function () {
+                // alert("error");
+
+                // $("#Loading").fadeOut(500, function () { document.getElementById("Loading").style.cssText += "display:none !important;"; })
+
+            })
         return false;
     }
     // Otherwise, display the correct tab:
@@ -209,7 +289,7 @@ function validateForm() {
     //loop check Validate Select Option
     SelectOption = x[currentTab].getElementsByTagName("select");
     for (i = 0; i < SelectOption.length; i++) {
-        console.log(SelectOption[i])
+        // console.log(SelectOption[i])
         if (SelectOption[i].value == "") {
             // add an "invalid" class to the field:
             if (SelectOption[i].className.search("invalid") == -1) SelectOption[i].className += " invalid";
