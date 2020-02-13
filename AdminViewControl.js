@@ -92,9 +92,9 @@ var myChart = new Chart(ctx, {
 });
 var canvas = document.getElementById('myChart')
 canvas.onclick = async function (e) {
-    // console.log(e)
+    // //console.log(e)
     var slice = myChart.getElementAtEvent(e);
-    // console.log(slice)
+    // //console.log(slice)
     if (!slice.length) return; // return if not clicked on slice
     var label = slice[0]._model.label;
 
@@ -115,7 +115,7 @@ canvas.onclick = async function (e) {
             break;
         // add rests ...
     }
-    
+
 
 
 
@@ -127,7 +127,7 @@ $.when($.ready).then(async function () {
     await APIgetCheckList()
     await APIgetDataGraph(null)
     APIstudentList(null)
-    // console.log(namefilter)
+    // //console.log(namefilter)
 }).done(function () {
     // alert("second success");
     $("#Loading").fadeOut(1000, function () { document.getElementById("Loading").style.cssText += "display:none !important;"; })
@@ -157,13 +157,13 @@ async function APIgetCheckList() {
     // $.get("http://192.168.1.8:3333/getCheckList",
     $.get(pathAPI + "getCheckList",
         function (data, status) {
-            // console.log(data.data)
+            // //console.log(data.data)
             let str = ""
             _.each(data.data, function (value, name) {
-                // console.log(name)
+                // //console.log(name)
                 str += CheckList(value, name)
             })
-            // console.log(namefilter)
+            // //console.log(namefilter)
             // document.getElementById("FilterList").innerHTML += str
         }).done(function () {
             // alert("second success");
@@ -176,7 +176,7 @@ async function APIgetCheckList() {
         })
 }
 function CheckList(data, name) {
-    // console.log(data)
+    // //console.log(data)
     namefilter.push(name)
     let Namefilter = ""
     if (name == "sexDataList") Namefilter = "เพศ"
@@ -309,7 +309,7 @@ function ClearFilterSearch() {
 async function GetDataFromFilter() {
     let a, b, c
     _.each(namefilter, function (value, index) {
-        console.log(index)
+        //console.log(index)
         let FilterVal = document.getElementsByName(value);
         let ListCheck = []
         if (FilterVal.length > 0) {
@@ -330,6 +330,7 @@ async function GetDataFromFilter() {
         yearId: c,
     }
 }
+
 function APIstudentList() {
     data = {
         "sexId": null,
@@ -340,7 +341,7 @@ function APIstudentList() {
     $.post(pathAPI + "studentList", data,
         async function (data, status) {
             await data
-            console.log(data.data)
+            //console.log(data.data)
             // PieChart(data.data.goodGPA, data.data.badGPA)
         }).done(function () {
 
@@ -365,11 +366,11 @@ function APIstudentList(data) {
             "GPA": ["bad", "good"]
         }
     }
-    console.log(data)
+    //console.log(data)
     $.post(pathAPI + "studentList", data,
         async function (data, status) {
             await data
-            console.log(data.data)
+            //console.log(data.data)
             let formatDataTable = []
             let str = ``
             for (i = 0; i < data.data.length; i++) {
@@ -404,6 +405,10 @@ function APIstudentList(data) {
                 table.destroy();
                 table = await $('#myTable').DataTable(
                     {
+                        select: true,
+                        select: {
+                            style: 'multi'
+                        },
                         columnDefs: [
                             { "className": "dt-center", "targets": "_all" }
                         ],
@@ -417,16 +422,28 @@ function APIstudentList(data) {
                             { data: 'ชั้นปี' },
                             { data: 'ผลทำนาย' }
                         ],
+
                     }
                 );
-                $('#myTable tbody').on('click', 'tr', function (index) {
+                $('#myTable tbody').on('dblclick', 'tr', function (index) {
                     var data = table.rows(this).data();
-                    // console.log(data[0].รหัสนักศึกษา)
+                    // //console.log(data[0].รหัสนักศึกษา)
                     window.open('/showData.html?id=' + data[0].รหัสนักศึกษา, '_blank');
                     // alert('You clicked on ' + data + '\'s row');
                 });
+                $('#myTable tbody').on('click', 'tr', function (index) {
+                    // //console.log(table.rows('.selected').data().length)
+                    // //console.log(table.rows('.selected').data().length + ' row(s) selected')
+                    // if (table.rows('.selected').data().length > 0) {
+                    //     document.getElementById("btnDelete").style.cssText += "display:inline-block !important;";
+                    // }
+                    // else {
+                    //     document.getElementById("btnDelete").style.cssText += "display:none !important;";
+                    // }
+
+                });
             });
-            // console.log(str)
+            // //console.log(str)
             // document.getElementById("data").innerHTML = str
 
             // PieChart(data.data.goodGPA, data.data.badGPA)
@@ -436,10 +453,88 @@ function APIstudentList(data) {
 
         })
 }
+async function DeleteDataSelected() {
+    Swal.fire({
+        title: 'ต้องการลบข้อมูลใช่ไหม ?',
+        text: "คุณจะไม่สามารถย้อนกลับได้",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonText: 'ยกเลิก',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'ใช่ ลบเลย!'
+    }).then((result) => {
+        if (table.rows('.selected').data().length > 0) {
+            if (result.value) {
+                //console.log(table.rows('.selected').data().length + ' row(s) selected')
+                let dataDelete = {
+                    studentDataId: []
+                }
+                _.each(table.rows('.selected').data(), (val, index) => {
+                    //console.log(val)
+                    dataDelete.studentDataId.push(val.รหัสนักศึกษา)
+                })
+                //console.log(dataDelete)
+                $.ajax({
+                    type: "DELETE",
+                    url: pathAPI + "userDelete",
+                    data: dataDelete,
+                    success: async function (data) {
+                        //console.log(data);
+                        await APIstudentList()
+                        Swal.fire(
+                            'ลบข้อมูลสำเร็จ!',
+                            'ข้อมูลที่คุณเลือกถูกลบแล้ว.',
+                            'success'
+                        )
+                    },
+                    error: function (data) {
+                        Swal.fire(
+                            'ลบข้อมูลไม่สำเร็จ!',
+                            'เกิดปัญหาการเชื่อมต่อโปรดติดต่อ Admin.',
+                            'error'
+                        )
+                    }
+                });
+
+                // $.delete(pathAPI + "userDelete", dataDelete,
+                //     async function (data, status) {
+                //         await data
+                //         //console.log(data)
+                //         // PieChart(data.data.goodGPA, data.data.badGPA)
+                //     }).done(async function () {
+                //         await APIstudentList()
+                //         Swal.fire(
+                //             'ลบข้อมูลสำเร็จ!',
+                //             'ข้อมูลที่คุณเลือกถูกลบแล้ว.',
+                //             'success'
+                //         )
+                //     }).fail(function () {
+                //         Swal.fire(
+                //             'ลบข้อมูลไม่สำเร็จ!',
+                //             'เกิดปัญหาการเชื่อมต่อโปรดติดต่อ Admin.',
+                //             'error'
+                //         )
+                //     })
+
+            }
+        }
+        else {
+            Swal.fire(
+                'คุณยังไม่ได้เลือกข้อมูลที่จะลบ!',
+                'กรุณาเลือกข้อมูลที่ต้องการลบก่อนกดปุ่ม',
+                'error'
+            )
+        }
+
+    })
+
+    // //console.log(table.rows('.selected').data())
+}
 // function CheckAll(univer) {
 //     _.each($('input[name$="university"]'), function (val1, index) {
 //         _.each($('input[name$="brandDataList"]'), function (val2, index) {
-//             if (val2.value == University[univer][val2.value]) console.log(true)
+//             if (val2.value == University[univer][val2.value]) //console.log(true)
 //             $('#' + val2.id).prop('checked', true)
 //         })
 //     })
