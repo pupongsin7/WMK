@@ -409,12 +409,25 @@ function APIstudentList(data) {
                         select: {
                             style: 'multi'
                         },
+                        columnDefs: [{
+                            orderable: false,
+                            className: 'select-checkbox',
+                            targets: 0
+                        }],
+                        
+                        order: [[1, 'asc']],
                         columnDefs: [
                             { "className": "dt-center", "targets": "_all" }
                         ],
                         responsive: true,
                         data: formatDataTable,
                         columns: [
+                            {
+                                data: null,
+                                defaultContent: "",
+                                className: "select-checkbox",
+                                orderable: false
+                            },
                             { data: 'รหัสนักศึกษา' },
                             { data: 'ชื่อ' },
                             { data: 'เพศ' },
