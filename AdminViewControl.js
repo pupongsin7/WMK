@@ -481,7 +481,9 @@ async function DeleteDataSelected() {
                     data: dataDelete,
                     success: async function (data) {
                         //console.log(data);
-                        await APIstudentList()
+                        let x = await GetDataFromFilter()
+                        await APIgetDataGraph(x)
+                        await APIstudentList(x)
                         Swal.fire(
                             'ลบข้อมูลสำเร็จ!',
                             'ข้อมูลที่คุณเลือกถูกลบแล้ว.',
