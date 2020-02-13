@@ -454,18 +454,20 @@ function APIstudentList(data) {
         })
 }
 async function DeleteDataSelected() {
-    Swal.fire({
-        title: 'ต้องการลบข้อมูลใช่ไหม ?',
-        text: "คุณจะไม่สามารถย้อนกลับได้",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonText: 'ยกเลิก',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'ใช่ ลบเลย!'
-    }).then((result) => {
-        if (table.rows('.selected').data().length > 0) {
+
+    if (table.rows('.selected').data().length > 0) {
+        Swal.fire({
+            title: 'ต้องการลบข้อมูลใช่ไหม ?',
+            text: "คุณจะไม่สามารถย้อนกลับได้",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonText: 'ยกเลิก',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ใช่ ลบเลย!'
+        }).then((result) => {
             if (result.value) {
+                EnableLoading()
                 //console.log(table.rows('.selected').data().length + ' row(s) selected')
                 let dataDelete = {
                     studentDataId: []
@@ -484,6 +486,7 @@ async function DeleteDataSelected() {
                         let x = await GetDataFromFilter()
                         await APIgetDataGraph(x)
                         await APIstudentList(x)
+                        DisableLoading()
                         Swal.fire(
                             'ลบข้อมูลสำเร็จ!',
                             'ข้อมูลที่คุณเลือกถูกลบแล้ว.',
@@ -491,6 +494,7 @@ async function DeleteDataSelected() {
                         )
                     },
                     error: function (data) {
+                        DisableLoading()
                         Swal.fire(
                             'ลบข้อมูลไม่สำเร็จ!',
                             'เกิดปัญหาการเชื่อมต่อโปรดติดต่อ Admin.',
@@ -520,16 +524,17 @@ async function DeleteDataSelected() {
                 //     })
 
             }
-        }
-        else {
-            Swal.fire(
-                'คุณยังไม่ได้เลือกข้อมูลที่จะลบ!',
-                'กรุณาเลือกข้อมูลที่ต้องการลบก่อนกดปุ่ม',
-                'error'
-            )
-        }
+        })
 
-    })
+    }
+    else {
+        Swal.fire(
+            'คุณยังไม่ได้เลือกข้อมูลที่จะลบ!',
+            'กรุณาคลิ๊กเลือกข้อมูลในตารางที่ต้องการลบก่อนกดปุ่มลบข้อมูล',
+            'error'
+        )
+    }
+
 
     // //console.log(table.rows('.selected').data())
 }

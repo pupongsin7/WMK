@@ -99,20 +99,22 @@
         <div class="d-flex flex-column justify-content-center align-items-center">
             <div class="card w-100">
                 <div class="card-header" id="headingOne">
-                        <button class="btn btn-link col-12 col-md-3 text-left" data-toggle="collapse" data-target="#collapseOne"
-                            aria-expanded="true" aria-controls="collapseOne" style="font-size:14px !important;">
-                            กรองข้อมูล
-                        </button>
-                        <button class="btn ml-1" style="float:right;font-size:14px !important;" onclick="FilterSearch()">
-                            ค้นหา
-                        </button>
-                        <button class="btn btn-primary ml-1" style="float:right;font-size:14px !important;" onclick="ClearFilterSearch()">
-                            ล้างการกรองข้อมูล
-                        </button>
-                        <button id="btnDelete" class="btn btn-danger float-right" style="display:inline-block;font-size:14px !important;"
-                            onclick="DeleteDataSelected()">
-                            ลบข้อมูล
-                        </button>
+                    <button class="btn btn-link col-12 col-md-3 text-left" data-toggle="collapse"
+                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
+                        style="font-size:14px !important;">
+                        กรองข้อมูล
+                    </button>
+                    <button class="btn ml-1" style="float:right;font-size:14px !important;" onclick="FilterSearch()">
+                        ค้นหา
+                    </button>
+                    <button class="btn btn-primary ml-1" style="float:right;font-size:14px !important;"
+                        onclick="ClearFilterSearch()">
+                        ล้างการกรองข้อมูล
+                    </button>
+                    <button id="btnDelete" class="btn btn-danger float-right"
+                        style="display:inline-block;font-size:14px !important;" onclick="DeleteDataSelected()">
+                        ลบข้อมูล
+                    </button>
                 </div>
 
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
@@ -276,6 +278,8 @@
                 </div>
                 <div class="d-flex flex-column justify-content-center align-items-center pt-5" style="font-size:14px">
                     <span class="text-danger"
+                        id="info">*คลิ๊กที่ข้อมูลในตารางเพื่อเลือกข้อมูลที่จะลบ</span>
+                    <span class="text-danger"
                         id="info">*ดับเบิ้ลคลิ๊กที่ข้อมูลในตารางเพื่อดูข้อมูลนักศึกษาย้อนหลัง</span>
                     <span class="text-danger" id="info">*คลิ๊กที่กราฟเพื่อกรอกข้อมูล</span>
                 </div>
@@ -333,6 +337,7 @@
                             <td>Bad</td>
                             </tr> -->
     </div>
+
     <script src="AdminViewControl.js"></script>
 </body>
 
